@@ -3,8 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 90;
 	objects = {
+
+/* Begin PBXBuildFile section */
+		60949BD22EFB5A6B00D323FA /* localizable stings.txt in Resources */ = {isa = PBXBuildFile; fileRef = 60949BD12EFB5A6B00D323FA /* localizable stings.txt */; };
+/* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		602646852EFB29C1001E9B93 /* PBXContainerItemProxy */ = {
@@ -27,11 +31,34 @@
 		602646752EFB29C0001E9B93 /* cordis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cordis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		602646842EFB29C1001E9B93 /* cordisTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cordisTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6026468E2EFB29C1001E9B93 /* cordisUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cordisUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		60949BD02EFB5A6B00D323FA /* en */ = {isa = PBXFileReference; lastKnownFileType = text; name = en; path = "en.lproj/localizable stings.txt"; sourceTree = "<group>"; };
+		60949BD32EFB5A7300D323FA /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text; name = "es-419"; path = "es-419.lproj/localizable stings.txt"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		60949B702EFB3A3100D323FA /* Exceptions for "cordis" folder in "cordisTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				cordisApp.swift,
+			);
+			target = 602646832EFB29C1001E9B93 /* cordisTests */;
+		};
+		60949B712EFB3A3100D323FA /* Exceptions for "cordis" folder in "cordisUITests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				cordisApp.swift,
+			);
+			target = 6026468D2EFB29C1001E9B93 /* cordisUITests */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		602646772EFB29C0001E9B93 /* cordis */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				60949B702EFB3A3100D323FA /* Exceptions for "cordis" folder in "cordisTests" target */,
+				60949B712EFB3A3100D323FA /* Exceptions for "cordis" folder in "cordisUITests" target */,
+			);
 			path = cordis;
 			sourceTree = "<group>";
 		};
@@ -50,24 +77,18 @@
 /* Begin PBXFrameworksBuildPhase section */
 		602646722EFB29C0001E9B93 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		602646812EFB29C1001E9B93 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		6026468B2EFB29C1001E9B93 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
@@ -79,6 +100,7 @@
 				602646872EFB29C1001E9B93 /* cordisTests */,
 				602646912EFB29C1001E9B93 /* cordisUITests */,
 				602646762EFB29C0001E9B93 /* Products */,
+				60949BD12EFB5A6B00D323FA /* localizable stings.txt */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,14 +127,10 @@
 			);
 			buildRules = (
 			);
-			dependencies = (
-			);
 			fileSystemSynchronizedGroups = (
 				602646772EFB29C0001E9B93 /* cordis */,
 			);
 			name = cordis;
-			packageProductDependencies = (
-			);
 			productName = cordis;
 			productReference = 602646752EFB29C0001E9B93 /* cordis.app */;
 			productType = "com.apple.product-type.application";
@@ -134,8 +152,6 @@
 				602646872EFB29C1001E9B93 /* cordisTests */,
 			);
 			name = cordisTests;
-			packageProductDependencies = (
-			);
 			productName = cordisTests;
 			productReference = 602646842EFB29C1001E9B93 /* cordisTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -157,8 +173,6 @@
 				602646912EFB29C1001E9B93 /* cordisUITests */,
 			);
 			name = cordisUITests;
-			packageProductDependencies = (
-			);
 			productName = cordisUITests;
 			productReference = 6026468E2EFB29C1001E9B93 /* cordisUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -172,6 +186,7 @@
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 2610;
 				LastUpgradeCheck = 2610;
+				ORGANIZATIONNAME = "wladen ";
 				TargetAttributes = {
 					602646742EFB29C0001E9B93 = {
 						CreatedOnToolsVersion = 26.1.1;
@@ -187,15 +202,16 @@
 				};
 			};
 			buildConfigurationList = 602646702EFB29C0001E9B93 /* Build configuration list for PBXProject "cordis" */;
-			developmentRegion = en;
+			developmentRegion = "es-419";
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				"es-419",
 				Base,
 			);
 			mainGroup = 6026466C2EFB29C0001E9B93;
 			minimizedProjectReferenceProxies = 1;
-			preferredProjectObjectVersion = 77;
+			preferredProjectObjectVersion = 90;
 			productRefGroup = 602646762EFB29C0001E9B93 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -210,48 +226,37 @@
 /* Begin PBXResourcesBuildPhase section */
 		602646732EFB29C0001E9B93 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
+				60949BD22EFB5A6B00D323FA /* localizable stings.txt in Resources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		602646822EFB29C1001E9B93 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		6026468C2EFB29C1001E9B93 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		602646712EFB29C0001E9B93 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		602646802EFB29C1001E9B93 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		6026468A2EFB29C1001E9B93 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
@@ -268,8 +273,20 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		60949BD12EFB5A6B00D323FA /* localizable stings.txt */ = {
+			isa = PBXVariantGroup;
+			children = (
+				60949BD02EFB5A6B00D323FA /* en */,
+				60949BD32EFB5A7300D323FA /* es-419 */,
+			);
+			name = "localizable stings.txt";
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
-		602646962EFB29C1001E9B93 /* Debug */ = {
+		602646962EFB29C1001E9B93 /* Debug configuration for PBXProject "cordis" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -329,11 +346,12 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		602646972EFB29C1001E9B93 /* Release */ = {
+		602646972EFB29C1001E9B93 /* Release configuration for PBXProject "cordis" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -386,20 +404,22 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		602646992EFB29C1001E9B93 /* Debug */ = {
+		602646992EFB29C1001E9B93 /* Debug configuration for PBXNativeTarget "cordis" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3U9ASM9AL5;
+				DEVELOPMENT_TEAM = 5Z75CJC22Q;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -410,7 +430,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = walden.dos.la.10.cordis;
+				PRODUCT_BUNDLE_IDENTIFIER = "cordis.cardiac.dedididor.la10--ubaldoorozcocamargo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -422,16 +442,17 @@
 			};
 			name = Debug;
 		};
-		6026469A2EFB29C1001E9B93 /* Release */ = {
+		6026469A2EFB29C1001E9B93 /* Release configuration for PBXNativeTarget "cordis" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3U9ASM9AL5;
+				DEVELOPMENT_TEAM = 5Z75CJC22Q;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -442,7 +463,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = walden.dos.la.10.cordis;
+				PRODUCT_BUNDLE_IDENTIFIER = "cordis.cardiac.dedididor.la10--ubaldoorozcocamargo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -454,7 +475,7 @@
 			};
 			name = Release;
 		};
-		6026469C2EFB29C1001E9B93 /* Debug */ = {
+		6026469C2EFB29C1001E9B93 /* Debug configuration for PBXNativeTarget "cordisTests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -476,7 +497,7 @@
 			};
 			name = Debug;
 		};
-		6026469D2EFB29C1001E9B93 /* Release */ = {
+		6026469D2EFB29C1001E9B93 /* Release configuration for PBXNativeTarget "cordisTests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -498,7 +519,7 @@
 			};
 			name = Release;
 		};
-		6026469F2EFB29C1001E9B93 /* Debug */ = {
+		6026469F2EFB29C1001E9B93 /* Debug configuration for PBXNativeTarget "cordisUITests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -518,7 +539,7 @@
 			};
 			name = Debug;
 		};
-		602646A02EFB29C1001E9B93 /* Release */ = {
+		602646A02EFB29C1001E9B93 /* Release configuration for PBXNativeTarget "cordisUITests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -544,37 +565,33 @@
 		602646702EFB29C0001E9B93 /* Build configuration list for PBXProject "cordis" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				602646962EFB29C1001E9B93 /* Debug */,
-				602646972EFB29C1001E9B93 /* Release */,
+				602646962EFB29C1001E9B93 /* Debug configuration for PBXProject "cordis" */,
+				602646972EFB29C1001E9B93 /* Release configuration for PBXProject "cordis" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		602646982EFB29C1001E9B93 /* Build configuration list for PBXNativeTarget "cordis" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				602646992EFB29C1001E9B93 /* Debug */,
-				6026469A2EFB29C1001E9B93 /* Release */,
+				602646992EFB29C1001E9B93 /* Debug configuration for PBXNativeTarget "cordis" */,
+				6026469A2EFB29C1001E9B93 /* Release configuration for PBXNativeTarget "cordis" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		6026469B2EFB29C1001E9B93 /* Build configuration list for PBXNativeTarget "cordisTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6026469C2EFB29C1001E9B93 /* Debug */,
-				6026469D2EFB29C1001E9B93 /* Release */,
+				6026469C2EFB29C1001E9B93 /* Debug configuration for PBXNativeTarget "cordisTests" */,
+				6026469D2EFB29C1001E9B93 /* Release configuration for PBXNativeTarget "cordisTests" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		6026469E2EFB29C1001E9B93 /* Build configuration list for PBXNativeTarget "cordisUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6026469F2EFB29C1001E9B93 /* Debug */,
-				602646A02EFB29C1001E9B93 /* Release */,
+				6026469F2EFB29C1001E9B93 /* Debug configuration for PBXNativeTarget "cordisUITests" */,
+				602646A02EFB29C1001E9B93 /* Release configuration for PBXNativeTarget "cordisUITests" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */

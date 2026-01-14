@@ -1,32 +1,19 @@
-//
-//  cordisApp.swift
-//  cordis
-//
-//  Created by Balo Orozco on 23/12/25.
-//
-
 import SwiftUI
 import SwiftData
 
 @main
-struct cordisApp: App {
-    var sharedModelContainer: ModelContainer = {
-        let schema = Schema([
-            Item.self,
-        ])
-        let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
-
-        do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
-        } catch {
-            fatalError("Could not create ModelContainer: \(error)")
-        }
-    }()
+struct CordisApp: App {
+    private let container: ModelContainer = CordisPersistence.makeContainer()
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RootView()
         }
-        .modelContainer(sharedModelContainer)
+        .modelContainer(container)
     }
+}
+
+#Preview {
+    RootView()
+        .modelContainer(for: [StressEntry.self, UserStats.self, AppSettings.self], inMemory: true)
 }

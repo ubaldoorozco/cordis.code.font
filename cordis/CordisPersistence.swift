@@ -2,7 +2,7 @@
 //  CordisPersistence.swift
 //  cordis
 //
-//  Extracted by assistant on 23/12/25
+// ubaldo orozco  on 23/12/25
 //
 
 import Foundation

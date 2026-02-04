@@ -44,5 +44,5 @@ struct RootView: View {
 
 #Preview {
     RootView()
-        .modelContainer(for: [StressEntry.self, UserStats.self, AppSettings.self], inMemory: true)
+        .modelContainer(for: [StressEntry.self, UserStats.self, AppSettings.self, ChatMessage.self], inMemory: true)
 }

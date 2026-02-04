@@ -2,7 +2,8 @@
 //  HomeView.swift
 //  cordis
 //
-//  ubaldo orozco  on 23/12/25
+//  ubaldo orozco on 23/12/25
+//  Redesigned with glassmorphism
 //
 
 import SwiftUI
@@ -14,15 +15,19 @@ struct HomeView: View {
     @Query private var statsArr: [UserStats]
     @Query private var settingsArr: [AppSettings]
 
+    @StateObject private var healthKit = HealthKitManager.shared
+
     @State private var bpmInput = ""
     @State private var explosion = false
     @State private var confetti = false
     @State private var showingMeditation = false
+    @State private var showingManualMeasurement = false
 
     @FocusState private var bpmFocused: Bool
 
     private var settings: AppSettings? { settingsArr.first }
     private var ageGroup: Int { settings?.ageGroup ?? 2 }
+    private var healthKitEnabled: Bool { settings?.healthKitEnabled ?? false }
 
     private var ultimo: StressEntry? { entries.first }
     private var ultimoBPM: Int { ultimo?.bpm ?? 0 }
@@ -31,183 +36,291 @@ struct HomeView: View {
         return ultimoBPM > t.max
     }
 
+    private var backgroundColorScheme: AnimatedGlassBackground.BackgroundColorScheme {
+        if explosion { return .stress }
+        if let ultimo = ultimo {
+            let t = StressEntry.thresholds(for: ultimo.ageGroup)
+            if ultimo.bpm < t.min + 10 { return .success }
+            if ultimo.bpm > t.max { return .stress }
+        }
+        return .calm
+    }
+
     var body: some View {
         NavigationStack {
             ZStack {
-                LinearGradient(
-                    colors: explosion ? [.red, .black] : [.purple, .indigo],
-                    startPoint: .top, endPoint: .bottom
-                )
-                .ignoresSafeArea()
-                .animation(.easeInOut(duration: 1.2), value: explosion)
+                AnimatedGlassBackground(colorScheme: backgroundColorScheme)
+                    .animation(.easeInOut(duration: 1.2), value: explosion)
 
                 if confetti { ConfettiView() }
 
                 ScrollView {
                     VStack(spacing: 24) {
-                        Text("CORDIS")
-                            .font(.system(size: 50, weight: .black, design: .rounded))
-                            .foregroundColor(.white)
-                            .shadow(radius: 10)
+                        // Header
+                        headerSection
 
-                        VStack(spacing: 14) {
-                            Text("¿Cuál fue tu BPM?")
-                                .font(.title.bold())
-                                .foregroundColor(.white)
+                        // HealthKit or Manual Input
+                        inputSection
 
-                            TextField(
-                                "",
-                                text: $bpmInput,
-                                prompt: Text("88").foregroundStyle(.white.opacity(0.5))
-                            )
-                            .font(.system(size: 70, weight: .black))
-                            .foregroundStyle(.white)
-#if os(iOS)
-                            .keyboardType(.numberPad)
-#endif
-                            .multilineTextAlignment(.center)
-                            .padding(30)
-                            .background(Color.white.opacity(0.2))
-                            .cornerRadius(30)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 30).stroke(.white, lineWidth: 5)
-                            )
-                            .focused($bpmFocused)
-                            .onTapGesture { bpmFocused = true }
-                            .onChange(of: bpmInput) { _, newValue in
-                                bpmInput = newValue.filter(\.isNumber)
-                            }
-#if os(iOS)
-                            .toolbar {
-                                ToolbarItemGroup(placement: .keyboard) {
-                                    Spacer()
-                                    Button("Listo") { bpmFocused = false }
-                                }
-                            }
-#endif
-                            .padding(.horizontal, 30)
+                        // Last Entry Info
+                        lastEntrySection
 
-                            VStack(alignment: .leading, spacing: 10) {
-                                if let ultimo {
-                                    HStack {
-                                        Image(systemName: "clock.fill")
-                                        Text("Último registro: \(relativeString(since: ultimo.timestamp))")
-                                    }
-                                    .font(.subheadline.bold())
-                                    .foregroundColor(.white.opacity(0.95))
-
-                                    HStack(alignment: .top, spacing: 10) {
-                                        Image(systemName: "sparkles").padding(.top, 2)
-                                        Text(consejoPara(bpm: ultimo.bpm, ageGroup: ultimo.ageGroup))
-                                            .font(.subheadline)
-                                            .foregroundColor(.white.opacity(0.9))
-                                    }
-                                } else {
-                                    HStack {
-                                        Image(systemName: "info.circle.fill")
-                                        Text("Aún no hay mediciones guardadas.")
-                                    }
-                                    .font(.subheadline)
-                                    .foregroundColor(.white.opacity(0.9))
-                                }
-
-                                let days = statsArr.first?.streakDays ?? 0
-                                HStack {
-                                    Image(systemName: "flame.fill")
-                                    Text(streakText(days: days))
-                                }
-                                .font(.subheadline.bold())
-                                .foregroundColor(.white.opacity(0.95))
-                            }
-                            .padding(16)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .background(.white.opacity(0.14))
-                            .cornerRadius(18)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 18)
-                                    .stroke(.white.opacity(0.25), lineWidth: 1)
-                            )
-                            .padding(.horizontal, 30)
-
-                            Button("Analizar") { analizar() }
-                                .font(.title.bold())
-                                .frame(maxWidth: .infinity)
-                                .padding(24)
-                                .background(
-                                    LinearGradient(colors: [.orange, .red],
-                                                   startPoint: .leading,
-                                                   endPoint: .trailing)
-                                )
-                                .foregroundColor(.white)
-                                .cornerRadius(25)
-                                .shadow(radius: 20)
-                                .padding(.horizontal, 30)
-                        }
-
+                        // Current Level
                         if let ultimo = entries.first {
-                            VStack(spacing: 12) {
-                                Text("Nivel actual")
-                                    .font(.title2).bold()
-                                    .foregroundColor(.white.opacity(0.8))
-
-                                Text(localizedStressLevel(ultimo.stressLevel))
-                                    .font(.system(size: 36, weight: .black))
-                                    .foregroundColor(.white)
-                                    .padding()
-                                    .frame(maxWidth: .infinity)
-                                    .background(ultimo.color.opacity(0.9))
-                                    .cornerRadius(25)
-                                    .padding(.horizontal, 30)
-
-                                Text("\(ultimo.bpm) bpm")
-                                    .font(.title3).bold()
-                                    .foregroundColor(.white)
-                            }
+                            currentLevelSection(entry: ultimo)
                         }
 
+                        // Emergency Meditation
                         if necesitaMeditar {
-                            Button {
-                                showingMeditation = true
-                            } label: {
-                                Label("Meditación de emergencia", systemImage: "brain.head.profile")
-                                    .font(.title2.bold())
-                                    .frame(maxWidth: .infinity)
-                                    .padding(24)
-                                    .background(.red.gradient)
-                                    .foregroundColor(.white)
-                                    .cornerRadius(25)
-                                    .shadow(radius: 20)
-                            }
-                            .padding(.horizontal, 30)
-                            .sheet(isPresented: $showingMeditation) {
-                                MeditationView()
-                            }
+                            emergencyMeditationButton
                         }
 
-                        Text("Mediciones guardadas: \(entries.count)")
-                            .font(.title3)
-                            .foregroundColor(.white.opacity(0.8))
-
-                        Button(role: .destructive) {
-                            borrarTodo()
-                        } label: {
-                            Label("Borrar historial", systemImage: "trash")
-                                .frame(maxWidth: .infinity)
-                                .padding(14)
-                        }
-                        .buttonStyle(.borderedProminent)
-                        .tint(.black.opacity(0.35))
-                        .padding(.horizontal, 30)
+                        // Quick Actions
+                        quickActionsSection
 
                         Spacer(minLength: 90)
                     }
                     .padding(.vertical, 24)
                 }
             }
-            .navigationTitle("CORDIS")
+            .navigationTitle("")
+            .navigationBarTitleDisplayMode(.inline)
             .onAppear { ensureStatsExists() }
+            .sheet(isPresented: $showingMeditation) {
+                MeditationView()
+            }
+            .fullScreenCover(isPresented: $showingManualMeasurement) {
+                ManualMeasurementView { bpm in
+                    saveEntry(bpm: bpm)
+                }
+            }
         }
     }
+
+    // MARK: - Header Section
+
+    private var headerSection: some View {
+        VStack(spacing: 8) {
+            Text("CORDIS")
+                .font(.system(size: 42, weight: .black, design: .rounded))
+                .foregroundColor(.white)
+                .shadow(color: .black.opacity(0.2), radius: 10)
+
+            Text(String(localized: "home_title"))
+                .font(.title3)
+                .foregroundColor(.white.opacity(0.8))
+        }
+    }
+
+    // MARK: - Input Section
+
+    private var inputSection: some View {
+        VStack(spacing: 16) {
+            // HealthKit Status Card
+            if healthKitEnabled && healthKit.isAvailable {
+                healthKitCard
+            }
+
+            // Manual Input
+            GlassCard {
+                VStack(spacing: 16) {
+                    Text(String(localized: "home_enter_bpm"))
+                        .font(.headline)
+                        .foregroundStyle(.secondary)
+
+                    TextField(
+                        "",
+                        text: $bpmInput,
+                        prompt: Text("72").foregroundStyle(.white.opacity(0.3))
+                    )
+                    .font(.system(size: 56, weight: .bold, design: .rounded))
+                    .foregroundStyle(.white)
+                    #if os(iOS)
+                    .keyboardType(.numberPad)
+                    #endif
+                    .multilineTextAlignment(.center)
+                    .focused($bpmFocused)
+                    .onChange(of: bpmInput) { _, newValue in
+                        bpmInput = newValue.filter(\.isNumber)
+                    }
+                    #if os(iOS)
+                    .toolbar {
+                        ToolbarItemGroup(placement: .keyboard) {
+                            Spacer()
+                            Button(String(localized: "common_done")) { bpmFocused = false }
+                        }
+                    }
+                    #endif
+
+                    HStack(spacing: 12) {
+                        GlassButton(String(localized: "home_save"), icon: "heart.fill", style: .primary) {
+                            analizar()
+                        }
+
+                        GlassButton(String(localized: "home_measure_manual"), icon: "hand.raised", style: .secondary) {
+                            showingManualMeasurement = true
+                        }
+                    }
+                }
+            }
+            .padding(.horizontal)
+        }
+    }
+
+    // MARK: - HealthKit Card
+
+    private var healthKitCard: some View {
+        GlassCardAccent(accentColor: .green) {
+            HStack(spacing: 16) {
+                Image(systemName: "applewatch")
+                    .font(.title)
+                    .foregroundStyle(.green)
+
+                VStack(alignment: .leading, spacing: 4) {
+                    if let hr = healthKit.latestHeartRate {
+                        HStack(alignment: .lastTextBaseline, spacing: 4) {
+                            Text("\(Int(hr))")
+                                .font(.system(size: 32, weight: .bold, design: .rounded))
+                            Text("BPM")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        }
+
+                        if let time = healthKit.formattedLastReadingTime() {
+                            Text("\(String(localized: "healthkit_last_reading")): \(time)")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        }
+                    } else {
+                        Text(String(localized: "healthkit_no_data"))
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                    }
+                }
+
+                Spacer()
+
+                Button {
+                    Task {
+                        await healthKit.fetchLatestHeartRate()
+                    }
+                } label: {
+                    Image(systemName: "arrow.clockwise")
+                        .font(.title3)
+                        .foregroundStyle(.green)
+                }
+            }
+        }
+        .padding(.horizontal)
+    }
+
+    // MARK: - Last Entry Section
+
+    private var lastEntrySection: some View {
+        GlassCard {
+            VStack(alignment: .leading, spacing: 12) {
+                if let ultimo {
+                    HStack {
+                        Image(systemName: "clock.fill")
+                            .foregroundStyle(.purple)
+                        Text("\(String(localized: "home_last_entry")): \(relativeString(since: ultimo.timestamp))")
+                            .font(.subheadline.bold())
+                    }
+
+                    HStack(alignment: .top, spacing: 10) {
+                        Image(systemName: "sparkles")
+                            .foregroundStyle(.yellow)
+                            .padding(.top, 2)
+                        Text(consejoPara(bpm: ultimo.bpm, ageGroup: ultimo.ageGroup))
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                    }
+                } else {
+                    HStack {
+                        Image(systemName: "info.circle.fill")
+                            .foregroundStyle(.blue)
+                        Text(String(localized: "home_no_entries"))
+                            .font(.subheadline)
+                    }
+                }
+
+                Divider()
+
+                let days = statsArr.first?.streakDays ?? 0
+                HStack {
+                    Image(systemName: "flame.fill")
+                        .foregroundStyle(.orange)
+                    Text(streakText(days: days))
+                        .font(.subheadline.bold())
+                }
+            }
+        }
+        .padding(.horizontal)
+    }
+
+    // MARK: - Current Level Section
+
+    private func currentLevelSection(entry: StressEntry) -> some View {
+        let accentColor = entry.color
+
+        return GlassCardAccent(accentColor: accentColor) {
+            VStack(spacing: 12) {
+                Text(String(localized: "home_last_entry"))
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+
+                Text(localizedStressLevel(entry.stressLevel))
+                    .font(.system(size: 28, weight: .bold))
+                    .foregroundStyle(accentColor)
+
+                HStack(alignment: .lastTextBaseline, spacing: 4) {
+                    Text("\(entry.bpm)")
+                        .font(.system(size: 48, weight: .black, design: .rounded))
+                    Text("BPM")
+                        .font(.headline)
+                        .foregroundStyle(.secondary)
+                }
+            }
+            .frame(maxWidth: .infinity)
+        }
+        .padding(.horizontal)
+    }
+
+    // MARK: - Emergency Meditation Button
+
+    private var emergencyMeditationButton: some View {
+        GlassCardDanger {
+            VStack(spacing: 12) {
+                Image(systemName: "brain.head.profile")
+                    .font(.system(size: 40))
+                    .foregroundStyle(.red)
+
+                Text(String(localized: "home_breathe"))
+                    .font(.headline)
+
+                GlassButton(String(localized: "home_meditate"), icon: "sparkles", style: .danger) {
+                    showingMeditation = true
+                }
+            }
+            .frame(maxWidth: .infinity)
+        }
+        .padding(.horizontal)
+    }
+
+    // MARK: - Quick Actions
+
+    private var quickActionsSection: some View {
+        VStack(spacing: 12) {
+            HStack(spacing: 12) {
+                GlassPillButton(String(localized: "stats_entries"), icon: "list.bullet") {}
+                Text("\(entries.count)")
+                    .font(.headline)
+                    .foregroundStyle(.white)
+            }
+        }
+    }
+
+    // MARK: - Helper Methods
 
     private func ensureStatsExists() {
         if statsArr.isEmpty {
@@ -217,22 +330,24 @@ struct HomeView: View {
     }
 
     private func analizar() {
-        ensureStatsExists()
-
         let trimmed = bpmInput.trimmingCharacters(in: .whitespacesAndNewlines)
         guard let bpm = Int(trimmed), (30...220).contains(bpm) else {
             bpmInput = ""
             return
         }
+        saveEntry(bpm: bpm)
+        bpmInput = ""
+        bpmFocused = false
+    }
+
+    private func saveEntry(bpm: Int) {
+        ensureStatsExists()
 
         let nuevo = StressEntry(bpm: bpm, ageGroup: ageGroup)
         context.insert(nuevo)
         updateStreak(for: Date())
 
         do { try context.save() } catch { print("SAVE ERROR (entry):", error) }
-
-        bpmInput = ""
-        bpmFocused = false
 
         let t = StressEntry.thresholds(for: ageGroup)
 
@@ -244,11 +359,6 @@ struct HomeView: View {
             explosion = true
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) { explosion = false }
         }
-    }
-
-    private func borrarTodo() {
-        for e in entries { context.delete(e) }
-        do { try context.save() } catch { print("SAVE ERROR (delete all):", error) }
     }
 
     private func updateStreak(for now: Date) {
@@ -284,26 +394,25 @@ struct HomeView: View {
 
     private func consejoPara(bpm: Int, ageGroup: Int) -> String {
         let t = StressEntry.thresholds(for: ageGroup)
-        if bpm < t.min { return "Tu BPM está por debajo del rango esperado. Si te sientes mal, consulta a un médico." }
-        if bpm > t.max { return "Tu BPM está alto. Respira profundo, descansa y considera la meditación." }
-
-        if bpm < (t.min + 10) { return "¡Excelente! Tu ritmo está en un rango muy bueno." }
-        if bpm < (t.max - 15) { return "Normal. Mantén buenos hábitos: sueño, agua y actividad ligera." }
-        return "Elevado. Baja el ritmo: respira, siéntate y evita esfuerzo por un momento."
+        if bpm < t.min { return String(localized: "advice_low_bpm") }
+        if bpm > t.max { return String(localized: "advice_high_bpm") }
+        if bpm < (t.min + 10) { return String(localized: "advice_excellent") }
+        if bpm < (t.max - 15) { return String(localized: "advice_normal") }
+        return String(localized: "advice_elevated")
     }
 
     private func streakText(days: Int) -> String {
-        if days <= 0 { return "Racha: 0 días" }
-        return days == 1 ? "Racha: 1 día" : "Racha: \(days) días"
+        if days <= 0 { return String(localized: "home_streak") + ": 0" }
+        return "\(String(localized: "home_streak")): \(days)"
     }
 
     private func localizedStressLevel(_ raw: String) -> String {
         switch raw.lowercased() {
-        case "excelente": return "Excelente"
-        case "normal": return "Normal"
-        case "elevado": return "Elevado"
-        case "arritmia": return "Arritmia"
-        case "paro cardiaco": return "Paro cardiaco"
+        case "excelente": return String(localized: "stress_excellent")
+        case "normal": return String(localized: "stress_normal")
+        case "elevado": return String(localized: "stress_elevated")
+        case "arritmia": return String(localized: "stress_arrhythmia")
+        case "paro cardiaco": return String(localized: "stress_low")
         default: return raw
         }
     }

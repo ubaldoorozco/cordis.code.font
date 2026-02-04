@@ -13,7 +13,8 @@ enum CordisPersistence {
         let schema = Schema([
             StressEntry.self,
             UserStats.self,
-            AppSettings.self
+            AppSettings.self,
+            ChatMessage.self
         ])
 
         // Nombre estable del store

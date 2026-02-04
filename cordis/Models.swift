@@ -9,13 +9,15 @@ import Foundation
 import SwiftUI
 import SwiftData
 
+// MARK: - StressEntry
+
 @Model
 final class StressEntry {
     @Attribute(.unique) var id: UUID = UUID()
     var bpm: Int
     var timestamp: Date
     var stressLevel: String
-    /// 0 = 4–7, 1 = 8–12, 2 = 13–16
+    /// 0 = 4–7, 1 = 8–12, 2 = 13–16, 3 = 17–21
     var ageGroup: Int
 
     init(bpm: Int, timestamp: Date = .now, ageGroup: Int = 2) {
@@ -26,12 +28,14 @@ final class StressEntry {
     }
 
     static func thresholds(for ageGroup: Int) -> (min: Int, max: Int) {
-        // Rangos aproximados de reposo (simplificados) para 4–16 años.
-        // Ajusta si quieres ser más estricto/relajado.
+        // Rangos aproximados de reposo según AHA (American Heart Association)
+        // para diferentes grupos de edad.
         switch ageGroup {
-        case 0: return (70, 120) // 4–7
-        case 1: return (65, 115) // 8–12
-        default: return (60, 110) // 13–16
+        case 0: return (70, 120) // 4–7 años
+        case 1: return (65, 115) // 8–12 años
+        case 2: return (60, 110) // 13–16 años
+        case 3: return (55, 100) // 17–21 años
+        default: return (60, 100) // Adulto general
         }
     }
 
@@ -73,19 +77,70 @@ final class UserStats {
     }
 }
 
+// MARK: - AppSettings
+
 @Model
 final class AppSettings {
     @Attribute(.unique) var id: UUID = UUID()
     /// 0 = sistema, 1 = claro, 2 = oscuro
     var themeMode: Int
-    /// 0 = Español, 1 = Inglés (el usuario escribió “iglesia”, asumo “inglés”)
+    /// 0 = Español, 1 = Inglés
     var languageMode: Int
-    /// 0 = 4–7, 1 = 8–12, 2 = 13–16
+    /// 0 = 4–7, 1 = 8–12, 2 = 13–16, 3 = 17–21
     var ageGroup: Int
+    /// User's preferred name for personalization
+    var preferredName: String
+    /// Health objective: 0 = reduce stress, 1 = track fitness, 2 = improve sleep, 3 = general wellness
+    var objective: Int
+    /// Whether daily reminders are enabled
+    var reminderEnabled: Bool
+    /// Hour for daily reminder (0-23)
+    var reminderHour: Int
+    /// Minute for daily reminder (0-59)
+    var reminderMinute: Int
+    /// Whether to save chat history
+    var saveChatHistory: Bool
+    /// Whether HealthKit integration is enabled
+    var healthKitEnabled: Bool
 
-    init(themeMode: Int = 0, languageMode: Int = 0, ageGroup: Int = 2) {
+    init(
+        themeMode: Int = 0,
+        languageMode: Int = 0,
+        ageGroup: Int = 2,
+        preferredName: String = "",
+        objective: Int = 0,
+        reminderEnabled: Bool = false,
+        reminderHour: Int = 9,
+        reminderMinute: Int = 0,
+        saveChatHistory: Bool = true,
+        healthKitEnabled: Bool = false
+    ) {
         self.themeMode = themeMode
         self.languageMode = languageMode
         self.ageGroup = ageGroup
+        self.preferredName = preferredName
+        self.objective = objective
+        self.reminderEnabled = reminderEnabled
+        self.reminderHour = reminderHour
+        self.reminderMinute = reminderMinute
+        self.saveChatHistory = saveChatHistory
+        self.healthKitEnabled = healthKitEnabled
+    }
+}
+
+// MARK: - ChatMessage
+
+@Model
+final class ChatMessage {
+    @Attribute(.unique) var id: UUID = UUID()
+    /// "user" or "assistant"
+    var role: String
+    var text: String
+    var timestamp: Date
+
+    init(role: String, text: String, timestamp: Date = .now) {
+        self.role = role
+        self.text = text
+        self.timestamp = timestamp
     }
 }

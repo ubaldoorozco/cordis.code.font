@@ -3,31 +3,45 @@
 //  cordis
 //
 //  ubaldo orozco on 23/12/25
+//  Updated with Medical Info tab
 //
 
 import SwiftUI
 
 struct MainTabView: View {
+    @State private var selectedTab = 0
+    @State private var showMedicalInfo = false
+
     var body: some View {
-        TabView {
+        TabView(selection: $selectedTab) {
             HomeView()
-                .tabItem { Label("Inicio", systemImage: "house.fill") }
+                .tabItem {
+                    Label(String(localized: "tab_home"), systemImage: "house.fill")
+                }
+                .tag(0)
 
             HistoryView()
-                .tabItem { Label("Historial", systemImage: "clock.arrow.circlepath") }
+                .tabItem {
+                    Label(String(localized: "tab_history"), systemImage: "clock.arrow.circlepath")
+                }
+                .tag(1)
 
             StatsView()
-                .tabItem { Label("Estadísticas", systemImage: "chart.line.uptrend.xyaxis") }
+                .tabItem {
+                    Label(String(localized: "tab_stats"), systemImage: "chart.line.uptrend.xyaxis")
+                }
+                .tag(2)
 
             SettingsView()
-                .tabItem { Label("Ajustes", systemImage: "gearshape.fill") }
+                .tabItem {
+                    Label(String(localized: "tab_settings"), systemImage: "gearshape.fill")
+                }
+                .tag(3)
         }
-        .tint(.orange)
+        .tint(.purple)
     }
 }
 
 #Preview {
     MainTabView()
 }
-
-

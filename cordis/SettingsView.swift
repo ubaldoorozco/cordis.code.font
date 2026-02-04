@@ -2,9 +2,9 @@
 //  SettingsView.swift
 //  cordis
 //
-// created by ubaldo orozoco camargo  on 23/12/25
+//  created by ubaldo orozoco camargo on 23/12/25
+//  Redesigned with glassmorphism
 //
-
 
 import SwiftUI
 import SwiftData
@@ -15,108 +15,288 @@ struct SettingsView: View {
     @Query private var settingsArr: [AppSettings]
     @Query(sort: \ChatMessage.timestamp, order: .reverse) private var chatMessages: [ChatMessage]
 
-    @State private var selectedTheme: Int = 0
-    @State private var selectedAgeGroup: Int = 3
-    @State private var preferredName: String = ""
+    @StateObject private var healthKit = HealthKitManager.shared
+    @StateObject private var notifications = NotificationManager.shared
 
-    // ✅ nuevas configs
+    @State private var selectedTheme: Int = 0
+    @State private var selectedAgeGroup: Int = 2
+    @State private var preferredName: String = ""
     @State private var objective: Int = 0
     @State private var reminderEnabled: Bool = false
     @State private var reminderTime: Date = Date()
     @State private var saveChatHistory: Bool = true
+    @State private var healthKitEnabled: Bool = false
+    @State private var showMedicalInfo = false
 
     var body: some View {
         NavigationStack {
-            Form {
+            ZStack {
+                AnimatedGlassBackground(colorScheme: .calm)
 
-                Section(header: Text("Perfil")) {
-                    TextField("Tu nombre (para el chat)", text: $preferredName)
-                        .textInputAutocapitalization(.words)
-                        .autocorrectionDisabled()
+                ScrollView {
+                    VStack(spacing: 20) {
+                        // Profile Section
+                        profileSection
 
-                    Text("El asistente te llamará por este nombre.")
-                        .font(.footnote)
-                        .foregroundStyle(.secondary)
-                }
+                        // Objective Section
+                        objectiveSection
 
-                Section(header: Text("Objetivo")) {
-                    Picker("Mi objetivo", selection: $objective) {
-                        Text("Calmarme / bajar ritmo").tag(0)
-                        Text("Dormir mejor").tag(1)
-                        Text("Mejorar hábitos").tag(2)
-                        Text("Rendimiento (escuela)").tag(3)
+                        // HealthKit Section
+                        healthKitSection
+
+                        // Reminder Section
+                        reminderSection
+
+                        // Privacy Section
+                        privacySection
+
+                        // Appearance Section
+                        appearanceSection
+
+                        // Age Group Section
+                        ageGroupSection
+
+                        // Medical Info Link
+                        medicalInfoButton
+
+                        // Disclaimer
+                        disclaimerSection
                     }
-                    .pickerStyle(.navigationLink)
-
-                    Text("El chat prioriza consejos según tu objetivo.")
-                        .font(.footnote)
-                        .foregroundStyle(.secondary)
-                }
-
-                Section(header: Text("Recordatorio diario")) {
-                    Toggle("Activar recordatorio", isOn: $reminderEnabled)
-
-                    DatePicker("Hora", selection: $reminderTime, displayedComponents: .hourAndMinute)
-                        .disabled(!reminderEnabled)
-
-                    Text("Te manda una notificación diaria para registrar tu BPM.")
-                        .font(.footnote)
-                        .foregroundStyle(.secondary)
-                }
-
-                Section(header: Text("Privacidad")) {
-                    Toggle("Guardar historial del chat", isOn: $saveChatHistory)
-
-                    Text("Si lo apagas, el chat no guarda mensajes y se borran los anteriores.")
-                        .font(.footnote)
-                        .foregroundStyle(.secondary)
-                }
-
-                Section(header: Text("Apariencia")) {
-                    Picker("Modo", selection: $selectedTheme) {
-                        Text("Sistema").tag(0)
-                        Text("Claro").tag(1)
-                        Text("Oscuro").tag(2)
-                    }
-                    .pickerStyle(.segmented)
-                }
-
-                Section(header: Text("Edad")) {
-                    Picker("Rango", selection: $selectedAgeGroup) {
-                        Text("4 a 7 años").tag(0)
-                        Text("8 a 12 años").tag(1)
-                        Text("13 a 16 años").tag(2)
-                        Text("16 a 21 años").tag(3)
-                    }
-                    .pickerStyle(.segmented)
-
-                    let t = StressEntry.thresholds(for: selectedAgeGroup)
-                    Text("Ritmo esperado: \(t.min) – \(t.max) bpm")
-                        .font(.footnote)
-                        .foregroundStyle(.secondary)
-                }
-
-                Section {
-                    Text("CORDIS es una app educativa. No sustituye la orientación de un profesional.")
-                        .font(.footnote)
-                        .foregroundStyle(.secondary)
+                    .padding()
                 }
             }
-            .scrollContentBackground(.hidden)
-            .background(Color.clear)
-            .navigationTitle("Configuración")
+            .navigationTitle(String(localized: "settings_title"))
+            .navigationBarTitleDisplayMode(.large)
         }
         .onAppear {
             ensureSettingsExists()
             load()
         }
-        .onChange(of: selectedTheme) { _ in save() }
-        .onChange(of: selectedAgeGroup) { _ in save() }
-        .onChange(of: preferredName) { _ in save() }
-        .onChange(of: objective) { _ in save() }
-        .onChange(of: reminderEnabled) { _ in save() }
-        .onChange(of: reminderTime) { _ in save() }
-        .onChange(of: saveChatHistory) { _ in save() }
+        .onChange(of: selectedTheme) { _, _ in save() }
+        .onChange(of: selectedAgeGroup) { _, _ in save() }
+        .onChange(of: preferredName) { _, _ in save() }
+        .onChange(of: objective) { _, _ in save() }
+        .onChange(of: reminderEnabled) { _, _ in save() }
+        .onChange(of: reminderTime) { _, _ in save() }
+        .onChange(of: saveChatHistory) { _, _ in save() }
+        .onChange(of: healthKitEnabled) { _, _ in save() }
+        .sheet(isPresented: $showMedicalInfo) {
+            MedicalInfoView()
+        }
+    }
+
+    // MARK: - Profile Section
+
+    private var profileSection: some View {
+        GlassCard {
+            VStack(alignment: .leading, spacing: 12) {
+                Label(String(localized: "settings_profile"), systemImage: "person.circle")
+                    .font(.headline)
+                    .foregroundStyle(.purple)
+
+                TextField(String(localized: "settings_name"), text: $preferredName)
+                    .textFieldStyle(.plain)
+                    .padding()
+                    .background(.ultraThinMaterial)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    #if os(iOS)
+                    .textInputAutocapitalization(.words)
+                    #endif
+                    .autocorrectionDisabled()
+
+                Text("The assistant will call you by this name.")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+        }
+    }
+
+    // MARK: - Objective Section
+
+    private var objectiveSection: some View {
+        GlassCard {
+            VStack(alignment: .leading, spacing: 12) {
+                Label(String(localized: "settings_objective"), systemImage: "target")
+                    .font(.headline)
+                    .foregroundStyle(.purple)
+
+                VStack(spacing: 8) {
+                    objectiveButton(String(localized: "objective_reduce_stress"), icon: "heart.fill", tag: 0)
+                    objectiveButton(String(localized: "objective_track_fitness"), icon: "figure.run", tag: 1)
+                    objectiveButton(String(localized: "objective_improve_sleep"), icon: "moon.fill", tag: 2)
+                    objectiveButton(String(localized: "objective_general_wellness"), icon: "sparkles", tag: 3)
+                }
+            }
+        }
+    }
+
+    private func objectiveButton(_ title: String, icon: String, tag: Int) -> some View {
+        Button {
+            objective = tag
+        } label: {
+            HStack {
+                Image(systemName: icon)
+                    .foregroundStyle(objective == tag ? .white : .purple)
+                Text(title)
+                    .foregroundStyle(objective == tag ? .white : .primary)
+                Spacer()
+                if objective == tag {
+                    Image(systemName: "checkmark.circle.fill")
+                        .foregroundStyle(.white)
+                }
+            }
+            .padding()
+            .background(objective == tag ? Color.purple : Color.clear)
+            .background(.ultraThinMaterial)
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+        }
+    }
+
+    // MARK: - HealthKit Section
+
+    private var healthKitSection: some View {
+        GlassCard {
+            VStack(alignment: .leading, spacing: 12) {
+                Label(String(localized: "settings_healthkit"), systemImage: "heart.text.square")
+                    .font(.headline)
+                    .foregroundStyle(.green)
+
+                Toggle(String(localized: "settings_healthkit_enable"), isOn: $healthKitEnabled)
+                    .tint(.green)
+                    .onChange(of: healthKitEnabled) { _, newValue in
+                        if newValue {
+                            Task {
+                                let authorized = await healthKit.requestAuthorization()
+                                if !authorized {
+                                    healthKitEnabled = false
+                                }
+                            }
+                        }
+                    }
+
+                Text(String(localized: "settings_healthkit_description"))
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+
+                if healthKitEnabled && healthKit.isAuthorized {
+                    HStack {
+                        Image(systemName: "checkmark.circle.fill")
+                            .foregroundStyle(.green)
+                        Text("Connected to Apple Health")
+                            .font(.caption)
+                            .foregroundStyle(.green)
+                    }
+                }
+            }
+        }
+    }
+
+    // MARK: - Reminder Section
+
+    private var reminderSection: some View {
+        GlassCard {
+            VStack(alignment: .leading, spacing: 12) {
+                Label(String(localized: "settings_notifications"), systemImage: "bell.fill")
+                    .font(.headline)
+                    .foregroundStyle(.orange)
+
+                Toggle(String(localized: "settings_reminder"), isOn: $reminderEnabled)
+                    .tint(.orange)
+
+                if reminderEnabled {
+                    DatePicker(String(localized: "settings_reminder_time"), selection: $reminderTime, displayedComponents: .hourAndMinute)
+                }
+
+                Text("Daily reminder to record your BPM")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+        }
+    }
+
+    // MARK: - Privacy Section
+
+    private var privacySection: some View {
+        GlassCard {
+            VStack(alignment: .leading, spacing: 12) {
+                Label(String(localized: "settings_privacy"), systemImage: "lock.shield")
+                    .font(.headline)
+                    .foregroundStyle(.blue)
+
+                Toggle(String(localized: "settings_save_chat"), isOn: $saveChatHistory)
+                    .tint(.blue)
+
+                Text("If disabled, chat messages will not be saved")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+        }
+    }
+
+    // MARK: - Appearance Section
+
+    private var appearanceSection: some View {
+        GlassCard {
+            VStack(alignment: .leading, spacing: 12) {
+                Label(String(localized: "settings_appearance"), systemImage: "paintbrush")
+                    .font(.headline)
+                    .foregroundStyle(.pink)
+
+                Picker(String(localized: "settings_theme"), selection: $selectedTheme) {
+                    Text(String(localized: "settings_theme_system")).tag(0)
+                    Text(String(localized: "settings_theme_light")).tag(1)
+                    Text(String(localized: "settings_theme_dark")).tag(2)
+                }
+                .pickerStyle(.segmented)
+            }
+        }
+    }
+
+    // MARK: - Age Group Section
+
+    private var ageGroupSection: some View {
+        GlassCard {
+            VStack(alignment: .leading, spacing: 12) {
+                Label(String(localized: "settings_age_group"), systemImage: "person.2")
+                    .font(.headline)
+                    .foregroundStyle(.teal)
+
+                Picker("", selection: $selectedAgeGroup) {
+                    Text(String(localized: "age_4_7")).tag(0)
+                    Text(String(localized: "age_8_12")).tag(1)
+                    Text(String(localized: "age_13_16")).tag(2)
+                    Text(String(localized: "age_17_21")).tag(3)
+                }
+                .pickerStyle(.segmented)
+
+                let t = StressEntry.thresholds(for: selectedAgeGroup)
+                Text("Expected range: \(t.min) – \(t.max) BPM")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+        }
+    }
+
+    // MARK: - Medical Info Button
+
+    private var medicalInfoButton: some View {
+        GlassButton(String(localized: "settings_medical_info"), icon: "cross.case", style: .secondary) {
+            showMedicalInfo = true
+        }
+    }
+
+    // MARK: - Disclaimer Section
+
+    private var disclaimerSection: some View {
+        GlassCard(padding: 12) {
+            HStack(spacing: 10) {
+                Image(systemName: "info.circle")
+                    .foregroundStyle(.secondary)
+                Text(String(localized: "medical_disclaimer"))
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+        }
     }
 
     // MARK: - Load/Save
@@ -138,8 +318,8 @@ struct SettingsView: View {
         objective = s.objective
         reminderEnabled = s.reminderEnabled
         saveChatHistory = s.saveChatHistory
+        healthKitEnabled = s.healthKitEnabled
 
-        // armar Date desde hour/minute
         var comps = Calendar.current.dateComponents([.year, .month, .day], from: Date())
         comps.hour = s.reminderHour
         comps.minute = s.reminderMinute
@@ -156,12 +336,12 @@ struct SettingsView: View {
 
         s.objective = objective
         s.reminderEnabled = reminderEnabled
+        s.healthKitEnabled = healthKitEnabled
 
         let comps = Calendar.current.dateComponents([.hour, .minute], from: reminderTime)
         s.reminderHour = comps.hour ?? 20
         s.reminderMinute = comps.minute ?? 0
 
-        // Si apaga historial: borramos mensajes guardados
         if s.saveChatHistory == true && saveChatHistory == false {
             for m in chatMessages { context.delete(m) }
             try? context.save()
@@ -170,43 +350,16 @@ struct SettingsView: View {
 
         try? context.save()
 
-        // Notificaciones
+        // Handle notifications
         if reminderEnabled {
-            requestAndScheduleReminder(hour: s.reminderHour, minute: s.reminderMinute)
+            Task {
+                await notifications.scheduleDailyReminder(hour: s.reminderHour, minute: s.reminderMinute)
+            }
         } else {
-            cancelReminder()
+            Task {
+                await notifications.cancelDailyReminder()
+            }
         }
-    }
-
-    // MARK: - Notifications
-    private func requestAndScheduleReminder(hour: Int, minute: Int) {
-        let center = UNUserNotificationCenter.current()
-        center.requestAuthorization(options: [.alert, .sound, .badge]) { _, _ in
-            scheduleReminder(hour: hour, minute: minute)
-        }
-    }
-
-    private func scheduleReminder(hour: Int, minute: Int) {
-        let center = UNUserNotificationCenter.current()
-        center.removePendingNotificationRequests(withIdentifiers: ["cordis.dailyReminder"])
-
-        var date = DateComponents()
-        date.hour = hour
-        date.minute = minute
-
-        let content = UNMutableNotificationContent()
-        content.title = "CORDIS"
-        content.body = "Hora de registrar tu BPM para mantener tu racha 💪"
-        content.sound = .default
-
-        let trigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: true)
-        let request = UNNotificationRequest(identifier: "cordis.dailyReminder", content: content, trigger: trigger)
-
-        center.add(request)
-    }
-
-    private func cancelReminder() {
-        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["cordis.dailyReminder"])
     }
 }
 

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		60949BD22EFB5A6B00D323FA /* localizable stings.txt in Resources */ = {isa = PBXBuildFile; fileRef = 60949BD12EFB5A6B00D323FA /* localizable stings.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,34 +30,11 @@
 		602646752EFB29C0001E9B93 /* cordis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cordis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		602646842EFB29C1001E9B93 /* cordisTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cordisTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6026468E2EFB29C1001E9B93 /* cordisUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cordisUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		60949BD02EFB5A6B00D323FA /* en */ = {isa = PBXFileReference; lastKnownFileType = text; name = en; path = "en.lproj/localizable stings.txt"; sourceTree = "<group>"; };
-		60949BD32EFB5A7300D323FA /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text; name = "es-419"; path = "es-419.lproj/localizable stings.txt"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		60949B702EFB3A3100D323FA /* Exceptions for "cordis" folder in "cordisTests" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				cordisApp.swift,
-			);
-			target = 602646832EFB29C1001E9B93 /* cordisTests */;
-		};
-		60949B712EFB3A3100D323FA /* Exceptions for "cordis" folder in "cordisUITests" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				cordisApp.swift,
-			);
-			target = 6026468D2EFB29C1001E9B93 /* cordisUITests */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		602646772EFB29C0001E9B93 /* cordis */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				60949B702EFB3A3100D323FA /* Exceptions for "cordis" folder in "cordisTests" target */,
-				60949B712EFB3A3100D323FA /* Exceptions for "cordis" folder in "cordisUITests" target */,
-			);
 			path = cordis;
 			sourceTree = "<group>";
 		};
@@ -100,7 +76,6 @@
 				602646872EFB29C1001E9B93 /* cordisTests */,
 				602646912EFB29C1001E9B93 /* cordisUITests */,
 				602646762EFB29C0001E9B93 /* Products */,
-				60949BD12EFB5A6B00D323FA /* localizable stings.txt */,
 			);
 			sourceTree = "<group>";
 		};
@@ -227,7 +202,6 @@
 		602646732EFB29C0001E9B93 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			files = (
-				60949BD22EFB5A6B00D323FA /* localizable stings.txt in Resources */,
 			);
 		};
 		602646822EFB29C1001E9B93 /* Resources */ = {
@@ -274,15 +248,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		60949BD12EFB5A6B00D323FA /* localizable stings.txt */ = {
-			isa = PBXVariantGroup;
-			children = (
-				60949BD02EFB5A6B00D323FA /* en */,
-				60949BD32EFB5A7300D323FA /* es-419 */,
-			);
-			name = "localizable stings.txt";
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */

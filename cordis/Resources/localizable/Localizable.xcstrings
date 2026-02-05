@@ -4,6 +4,12 @@
     "" : {
 
     },
+    "-%@" : {
+
+    },
+    "·" : {
+
+    },
     "%@: %@" : {
       "localizations" : {
         "es-419" : {
@@ -241,6 +247,9 @@
     "BPM Over Time" : {
 
     },
+    "Cargando meditaciones..." : {
+
+    },
     "Cerrar" : {
 
     },
@@ -361,6 +370,9 @@
 
     },
     "Detecté: %@" : {
+
+    },
+    "Ejercicio de Respiración" : {
 
     },
     "Expected range: %lld – %lld BPM" : {
@@ -989,6 +1001,9 @@
     "If disabled, chat messages will not be saved" : {
 
     },
+    "Inhala, mantén y exhala — 4 minutos" : {
+
+    },
     "Limpiar" : {
 
     },
@@ -1507,6 +1522,12 @@
         }
       }
     },
+    "Meditación" : {
+
+    },
+    "Meditaciones Guiadas" : {
+
+    },
     "meditation_breathe" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -1626,6 +1647,15 @@
     "Min" : {
 
     },
+    "Mostrando versión guardada" : {
+
+    },
+    "No hay meditaciones disponibles" : {
+
+    },
+    "No se pudieron cargar las meditaciones" : {
+
+    },
     "objective_general_wellness" : {
       "localizations" : {
         "en" : {
@@ -1693,6 +1723,9 @@
     "Preguntas (toca una)" : {
 
     },
+    "Reintentar" : {
+
+    },
     "reminder_body" : {
       "localizations" : {
         "en" : {
@@ -1724,6 +1757,9 @@
           }
         }
       }
+    },
+    "Respiración 4-7-8" : {
+
     },
     "Resumen" : {
 

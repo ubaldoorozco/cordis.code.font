@@ -18,7 +18,7 @@ enum CordisPersistence {
         ])
 
         // Nombre estable del store
-        let config = ModelConfiguration("CordisStore", schema: schema, isStoredInMemoryOnly: false)
+        let config = ModelConfiguration("CordisStore", schema: schema, isStoredInMemoryOnly: false, cloudKitDatabase: .none)
 
         do {
             return try ModelContainer(for: schema, configurations: [config])
@@ -34,7 +34,7 @@ enum CordisPersistence {
                 return try ModelContainer(for: schema, configurations: [config])
             } catch {
                 print("❌ Could not delete/recreate store. Falling back to in-memory:", error)
-                let mem = ModelConfiguration("CordisMemory", schema: schema, isStoredInMemoryOnly: true)
+                let mem = ModelConfiguration("CordisMemory", schema: schema, isStoredInMemoryOnly: true, cloudKitDatabase: .none)
                 return (try? ModelContainer(for: schema, configurations: [mem])) ?? {
                     fatalError("Unable to create any SwiftData container.")
                 }()

@@ -32,11 +32,19 @@ struct MainTabView: View {
                 }
                 .tag(2)
 
+            NavigationStack {
+                GuidedMeditationListView()
+            }
+            .tabItem {
+                Label("Meditación", systemImage: "headphones")
+            }
+            .tag(3)
+
             SettingsView()
                 .tabItem {
                     Label(String(localized: "tab_settings"), systemImage: "gearshape.fill")
                 }
-                .tag(3)
+                .tag(4)
         }
         .tint(.purple)
     }

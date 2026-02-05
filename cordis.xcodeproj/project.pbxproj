@@ -6,9 +6,6 @@
 	objectVersion = 90;
 	objects = {
 
-/* Begin PBXBuildFile section */
-/* End PBXBuildFile section */
-
 /* Begin PBXContainerItemProxy section */
 		602646852EFB29C1001E9B93 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -32,9 +29,22 @@
 		6026468E2EFB29C1001E9B93 /* cordisUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cordisUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		B93BB4D82F34206D00AC24F5 /* Exceptions for "cordis" folder in "cordis" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 602646742EFB29C0001E9B93 /* cordis */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		602646772EFB29C0001E9B93 /* cordis */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				B93BB4D82F34206D00AC24F5 /* Exceptions for "cordis" folder in "cordis" target */,
+			);
 			path = cordis;
 			sourceTree = "<group>";
 		};
@@ -247,9 +257,6 @@
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		602646962EFB29C1001E9B93 /* Debug configuration for PBXProject "cordis" */ = {
 			isa = XCBuildConfiguration;
@@ -385,6 +392,7 @@
 				DEVELOPMENT_TEAM = 5Z75CJC22Q;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = cordis/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "CORDIS needs access to your heart rate data from Apple Watch to monitor stress levels and provide personalized health insights.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -420,6 +428,7 @@
 				DEVELOPMENT_TEAM = 5Z75CJC22Q;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = cordis/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "CORDIS needs access to your heart rate data from Apple Watch to monitor stress levels and provide personalized health insights.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

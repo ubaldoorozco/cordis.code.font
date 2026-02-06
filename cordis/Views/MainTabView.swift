@@ -35,6 +35,8 @@ struct MainTabView: View {
             NavigationStack {
                 GuidedMeditationListView()
             }
+            .toolbarColorScheme(.dark, for: .navigationBar)
+            .toolbarBackground(.hidden, for: .navigationBar)
             .tabItem {
                 Label(String(localized: "tab_meditation"), systemImage: "headphones")
             }

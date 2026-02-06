@@ -89,8 +89,6 @@ struct StatsView: View {
             }
             .navigationTitle(String(localized: "stats_title"))
             .navigationBarTitleDisplayMode(.large)
-            .toolbarColorScheme(.dark, for: .navigationBar)
-            .toolbarBackground(.hidden, for: .navigationBar)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
@@ -105,6 +103,8 @@ struct StatsView: View {
                 HealthAssistantView()
             }
         }
+        .toolbarColorScheme(.dark, for: .navigationBar)
+        .toolbarBackground(.hidden, for: .navigationBar)
     }
 
     // MARK: - Period Selector

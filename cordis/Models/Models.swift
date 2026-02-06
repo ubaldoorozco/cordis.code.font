@@ -102,6 +102,12 @@ final class AppSettings {
     var saveChatHistory: Bool
     /// Whether HealthKit integration is enabled
     var healthKitEnabled: Bool
+    /// Whether onboarding has been completed
+    var hasCompletedOnboarding: Bool
+    /// Whether user has accepted the medical disclaimer
+    var hasAcceptedDisclaimer: Bool
+    /// Date when disclaimer was accepted
+    var disclaimerAcceptedDate: Date?
 
     init(
         themeMode: Int = 0,
@@ -113,7 +119,10 @@ final class AppSettings {
         reminderHour: Int = 9,
         reminderMinute: Int = 0,
         saveChatHistory: Bool = true,
-        healthKitEnabled: Bool = false
+        healthKitEnabled: Bool = false,
+        hasCompletedOnboarding: Bool = false,
+        hasAcceptedDisclaimer: Bool = false,
+        disclaimerAcceptedDate: Date? = nil
     ) {
         self.themeMode = themeMode
         self.languageMode = languageMode
@@ -125,6 +134,9 @@ final class AppSettings {
         self.reminderMinute = reminderMinute
         self.saveChatHistory = saveChatHistory
         self.healthKitEnabled = healthKitEnabled
+        self.hasCompletedOnboarding = hasCompletedOnboarding
+        self.hasAcceptedDisclaimer = hasAcceptedDisclaimer
+        self.disclaimerAcceptedDate = disclaimerAcceptedDate
     }
 }
 

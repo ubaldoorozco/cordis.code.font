@@ -27,7 +27,7 @@ enum CordisPersistence {
             print("⚠️ SwiftData container load failed:", error)
 
             do {
-                let url = try storeURL(named: "CordisStore.sqlite")
+                let url = try storeURL(named: "CordisStore")
                 try deleteStoreFiles(at: url)
                 print("🧹 Store deleted. Retrying container creation…")
 
@@ -42,19 +42,26 @@ enum CordisPersistence {
         }
     }
 
-    private static func storeURL(named sqliteName: String) throws -> URL {
+    private static func storeURL(named storeName: String) throws -> URL {
         let fm = FileManager.default
         let base = try fm.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-        // SwiftData suele guardar aquí; usamos un nombre consistente.
-        return base.appendingPathComponent(sqliteName)
+        // SwiftData uses .store extension
+        return base.appendingPathComponent(storeName + ".store")
     }
 
-    private static func deleteStoreFiles(at sqliteURL: URL) throws {
+    private static func deleteStoreFiles(at storeURL: URL) throws {
         let fm = FileManager.default
+        let baseName = storeURL.deletingPathExtension()
+
+        // SwiftData can create multiple files with different extensions
         let candidates: [URL] = [
-            sqliteURL,
-            sqliteURL.deletingPathExtension().appendingPathExtension("sqlite-wal"),
-            sqliteURL.deletingPathExtension().appendingPathExtension("sqlite-shm")
+            storeURL,
+            baseName.appendingPathExtension("store-wal"),
+            baseName.appendingPathExtension("store-shm"),
+            // Also try sqlite extensions for legacy support
+            baseName.appendingPathExtension("sqlite"),
+            baseName.appendingPathExtension("sqlite-wal"),
+            baseName.appendingPathExtension("sqlite-shm")
         ]
         for u in candidates where fm.fileExists(atPath: u.path) {
             try fm.removeItem(at: u)

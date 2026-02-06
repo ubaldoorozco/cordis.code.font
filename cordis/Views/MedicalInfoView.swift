@@ -69,6 +69,8 @@ struct MedicalInfoView: View {
             }
             .navigationTitle(String(localized: "medical_title"))
             .navigationBarTitleDisplayMode(.large)
+            .toolbarColorScheme(.dark, for: .navigationBar)
+            .toolbarBackground(.hidden, for: .navigationBar)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {

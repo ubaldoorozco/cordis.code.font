@@ -23,9 +23,10 @@ struct GuidedMeditationListView: View {
                 .padding(.bottom, 40)
             }
         }
-        .navigationTitle("Meditación")
+        .navigationTitle(String(localized: "meditation_title"))
         .navigationBarTitleDisplayMode(.large)
         .toolbarColorScheme(.dark, for: .navigationBar)
+        .toolbarBackground(.hidden, for: .navigationBar)
         .task {
             await cloudKit.fetchMeditations()
         }
@@ -36,7 +37,7 @@ struct GuidedMeditationListView: View {
 
     private var breathingSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("Ejercicio de Respiración")
+            Text(String(localized: "meditation_breathing_exercise"))
                 .font(.headline)
                 .foregroundColor(.white.opacity(0.8))
 
@@ -52,10 +53,10 @@ struct GuidedMeditationListView: View {
                         .clipShape(Circle())
 
                     VStack(alignment: .leading, spacing: 4) {
-                        Text("Respiración 4-7-8")
+                        Text(String(localized: "meditation_breathing_478"))
                             .font(.body.bold())
                             .foregroundColor(.white)
-                        Text("Inhala, mantén y exhala — 4 minutos")
+                        Text(String(localized: "meditation_breathing_description"))
                             .font(.subheadline)
                             .foregroundColor(.white.opacity(0.6))
                     }
@@ -78,7 +79,7 @@ struct GuidedMeditationListView: View {
 
     private var guidedSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("Meditaciones Guiadas")
+            Text(String(localized: "meditation_guided"))
                 .font(.headline)
                 .foregroundColor(.white.opacity(0.8))
 
@@ -94,7 +95,7 @@ struct GuidedMeditationListView: View {
                 HStack(spacing: 8) {
                     Image(systemName: "exclamationmark.triangle.fill")
                         .foregroundColor(.orange)
-                    Text("Mostrando versión guardada")
+                    Text(String(localized: "meditation_showing_cached"))
                         .font(.caption)
                         .foregroundColor(.white.opacity(0.5))
                 }
@@ -108,7 +109,7 @@ struct GuidedMeditationListView: View {
             ProgressView()
                 .tint(.white)
                 .scaleEffect(1.2)
-            Text("Cargando meditaciones...")
+            Text(String(localized: "meditation_loading"))
                 .font(.subheadline)
                 .foregroundColor(.white.opacity(0.5))
         }
@@ -123,7 +124,7 @@ struct GuidedMeditationListView: View {
                 .foregroundColor(.white.opacity(0.3))
 
             if cloudKit.errorMessage != nil {
-                Text("No se pudieron cargar las meditaciones")
+                Text(String(localized: "meditation_load_error"))
                     .font(.subheadline)
                     .foregroundColor(.white.opacity(0.6))
                     .multilineTextAlignment(.center)
@@ -131,12 +132,12 @@ struct GuidedMeditationListView: View {
                 Button {
                     Task { await cloudKit.fetchMeditations() }
                 } label: {
-                    Label("Reintentar", systemImage: "arrow.clockwise")
+                    Label(String(localized: "common_retry"), systemImage: "arrow.clockwise")
                         .font(.subheadline.bold())
                         .foregroundColor(.purple)
                 }
             } else {
-                Text("No hay meditaciones disponibles")
+                Text(String(localized: "meditation_no_available"))
                     .font(.subheadline)
                     .foregroundColor(.white.opacity(0.6))
             }

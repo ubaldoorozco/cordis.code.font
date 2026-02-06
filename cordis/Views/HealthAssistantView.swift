@@ -50,7 +50,7 @@ struct HealthAssistantView: View {
                         summaryCard(context)
 
                         if !detected.isEmpty {
-                            Text("Detecté: \(detected)")
+                            Text(String(localized: "assistant_detected \(detected)"))
                                 .font(.footnote)
                                 .foregroundColor(.secondary)
                         }
@@ -63,7 +63,7 @@ struct HealthAssistantView: View {
                             Divider().padding(.vertical, 6)
                         }
 
-                        Text("Preguntas (toca una)")
+                        Text(String(localized: "assistant_questions"))
                             .font(.headline)
 
                         VStack(spacing: 10) {
@@ -93,14 +93,18 @@ struct HealthAssistantView: View {
                     .padding()
                 }
             }
-            .navigationTitle("Chat")
+            .navigationTitle(String(localized: "assistant_title"))
+            .toolbarColorScheme(.dark, for: .navigationBar)
+            .toolbarBackground(.hidden, for: .navigationBar)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    Button("Cerrar") { dismiss() }
+                    Button(String(localized: "common_close")) { dismiss() }
+                        .foregroundStyle(.white)
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     if !currentMessages.isEmpty {
-                        Button("Limpiar") { clearChat() }
+                        Button(String(localized: "assistant_clear")) { clearChat() }
+                            .foregroundStyle(.white)
                     }
                 }
             }

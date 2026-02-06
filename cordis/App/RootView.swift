@@ -23,12 +23,31 @@ struct RootView: View {
         }
     }
 
+    private var shouldShowOnboarding: Bool {
+        guard let settings = settings else { return true }
+        return !settings.hasCompletedOnboarding
+    }
+
     var body: some View {
-        MainTabView()
-            .preferredColorScheme(preferredScheme)
-            .onAppear {
-                ensureBootstrapData()
+        Group {
+            if settingsArr.isEmpty {
+                // Loading state while bootstrap data is created
+                ZStack {
+                    AnimatedGlassBackground(colorScheme: .calm)
+                    ProgressView()
+                        .tint(.white)
+                        .scaleEffect(1.5)
+                }
+            } else if shouldShowOnboarding {
+                OnboardingContainerView()
+            } else {
+                MainTabView()
             }
+        }
+        .preferredColorScheme(preferredScheme)
+        .onAppear {
+            ensureBootstrapData()
+        }
     }
 
     private func ensureBootstrapData() {

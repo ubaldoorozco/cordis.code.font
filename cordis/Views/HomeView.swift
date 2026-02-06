@@ -85,7 +85,17 @@ struct HomeView: View {
             }
             .navigationTitle("")
             .navigationBarTitleDisplayMode(.inline)
-            .onAppear { ensureStatsExists() }
+            .onAppear {
+                ensureStatsExists()
+                if healthKitEnabled && healthKit.isAvailable {
+                    Task {
+                        if !healthKit.isAuthorized {
+                            _ = await healthKit.requestAuthorization()
+                        }
+                        await healthKit.fetchLatestHeartRate()
+                    }
+                }
+            }
             .sheet(isPresented: $showingMeditation) {
                 MeditationView()
             }

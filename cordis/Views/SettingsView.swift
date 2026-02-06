@@ -27,6 +27,8 @@ struct SettingsView: View {
     @State private var saveChatHistory: Bool = true
     @State private var healthKitEnabled: Bool = false
     @State private var showMedicalInfo = false
+    @State private var showPrivacyPolicy = false
+    @State private var showAbout = false
 
     var body: some View {
         NavigationStack {
@@ -59,6 +61,12 @@ struct SettingsView: View {
                         // Medical Info Link
                         medicalInfoButton
 
+                        // Privacy Policy Link
+                        privacyPolicyButton
+
+                        // About Link
+                        aboutButton
+
                         // Disclaimer
                         disclaimerSection
                     }
@@ -67,6 +75,8 @@ struct SettingsView: View {
             }
             .navigationTitle(String(localized: "settings_title"))
             .navigationBarTitleDisplayMode(.large)
+            .toolbarColorScheme(.dark, for: .navigationBar)
+            .toolbarBackground(.hidden, for: .navigationBar)
         }
         .onAppear {
             ensureSettingsExists()
@@ -82,6 +92,12 @@ struct SettingsView: View {
         .onChange(of: healthKitEnabled) { _, _ in save() }
         .sheet(isPresented: $showMedicalInfo) {
             MedicalInfoView()
+        }
+        .sheet(isPresented: $showPrivacyPolicy) {
+            PrivacyPolicyView()
+        }
+        .sheet(isPresented: $showAbout) {
+            AboutView()
         }
     }
 
@@ -282,6 +298,22 @@ struct SettingsView: View {
     private var medicalInfoButton: some View {
         GlassButton(String(localized: "settings_medical_info"), icon: "cross.case", style: .secondary) {
             showMedicalInfo = true
+        }
+    }
+
+    // MARK: - Privacy Policy Button
+
+    private var privacyPolicyButton: some View {
+        GlassButton(String(localized: "settings_privacy_policy"), icon: "hand.raised.fill", style: .secondary) {
+            showPrivacyPolicy = true
+        }
+    }
+
+    // MARK: - About Button
+
+    private var aboutButton: some View {
+        GlassButton(String(localized: "settings_about"), icon: "info.circle", style: .secondary) {
+            showAbout = true
         }
     }
 

@@ -36,7 +36,7 @@ struct MainTabView: View {
                 GuidedMeditationListView()
             }
             .tabItem {
-                Label("Meditación", systemImage: "headphones")
+                Label(String(localized: "tab_meditation"), systemImage: "headphones")
             }
             .tag(3)
 

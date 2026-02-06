@@ -29,6 +29,7 @@ struct SettingsView: View {
     @State private var showMedicalInfo = false
     @State private var showPrivacyPolicy = false
     @State private var showAbout = false
+    @State private var isLoading = true
 
     var body: some View {
         NavigationStack {
@@ -356,9 +357,17 @@ struct SettingsView: View {
         comps.hour = s.reminderHour
         comps.minute = s.reminderMinute
         reminderTime = Calendar.current.date(from: comps) ?? Date()
+
+        // Mark loading complete after a short delay to let onChange settle
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            isLoading = false
+        }
     }
 
     private func save() {
+        // Skip saving during initial load to prevent multiple reminder schedules
+        guard !isLoading else { return }
+
         ensureSettingsExists()
         guard let s = settingsArr.first else { return }
 

@@ -104,6 +104,12 @@ struct HomeView: View {
                     saveEntry(bpm: bpm)
                 }
             }
+            .onChange(of: healthKit.latestHeartRate) { oldValue, newValue in
+                // Auto-save HealthKit reading when it changes (but not on initial load)
+                if let newBpm = newValue, oldValue != nil, let oldBpm = oldValue, newBpm != oldBpm {
+                    saveHealthKitEntry(bpm: Int(newBpm))
+                }
+            }
         }
     }
 
@@ -213,6 +219,10 @@ struct HomeView: View {
                 Button {
                     Task {
                         await healthKit.fetchLatestHeartRate()
+                        // Save the fetched reading
+                        if let hr = healthKit.latestHeartRate {
+                            saveHealthKitEntry(bpm: Int(hr))
+                        }
                     }
                 } label: {
                     Image(systemName: "arrow.clockwise")
@@ -369,6 +379,15 @@ struct HomeView: View {
             explosion = true
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) { explosion = false }
         }
+    }
+
+    private func saveHealthKitEntry(bpm: Int) {
+        // Only save if we don't already have an entry with this exact BPM in the last minute
+        let oneMinuteAgo = Date().addingTimeInterval(-60)
+        let recentEntries = entries.filter { $0.timestamp > oneMinuteAgo && $0.bpm == bpm }
+        guard recentEntries.isEmpty else { return }
+
+        saveEntry(bpm: bpm)
     }
 
     private func updateStreak(for now: Date) {

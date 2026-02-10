@@ -14,6 +14,7 @@ struct CountdownTimerView: View {
     let totalSeconds: Int
     let onComplete: () -> Void
 
+    @Environment(\.horizontalSizeClass) private var sizeClass
     @State private var remainingSeconds: Int
     @State private var timer: Timer?
     @State private var isPulsing = false
@@ -29,6 +30,8 @@ struct CountdownTimerView: View {
     }
 
     var body: some View {
+        let circleSize: CGFloat = sizeClass == .regular ? 280 : 200
+
         VStack(spacing: 30) {
             // Circular progress
             ZStack {
@@ -38,7 +41,7 @@ struct CountdownTimerView: View {
                         Color.white.opacity(0.2),
                         style: StrokeStyle(lineWidth: 12, lineCap: .round)
                     )
-                    .frame(width: 200, height: 200)
+                    .frame(width: circleSize, height: circleSize)
 
                 // Progress ring
                 Circle()
@@ -51,7 +54,7 @@ struct CountdownTimerView: View {
                         ),
                         style: StrokeStyle(lineWidth: 12, lineCap: .round)
                     )
-                    .frame(width: 200, height: 200)
+                    .frame(width: circleSize, height: circleSize)
                     .rotationEffect(.degrees(-90))
                     .animation(.linear(duration: 1), value: progress)
 

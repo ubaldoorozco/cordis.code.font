@@ -15,6 +15,7 @@ struct StatsView: View {
     @Query(sort: \StressEntry.timestamp, order: .reverse)
     private var entries: [StressEntry]
 
+    @Environment(\.horizontalSizeClass) private var sizeClass
     @State private var showChat = false
     @State private var selectedPeriod: StatsPeriod = .week
 
@@ -86,6 +87,7 @@ struct StatsView: View {
                         totalEntriesCard
                     }
                     .padding()
+                    .frame(maxWidth: 700)
                 }
             }
             .navigationTitle(String(localized: "stats_title"))
@@ -197,7 +199,7 @@ struct StatsView: View {
                             .foregroundStyle(.secondary)
                     }
                     .frame(maxWidth: .infinity)
-                    .frame(height: 200)
+                    .frame(height: sizeClass == .regular ? 320 : 200)
                 } else {
                     Chart(filteredEntries) { entry in
                         LineMark(
@@ -233,7 +235,7 @@ struct StatsView: View {
                         .symbolSize(30)
                     }
                     .chartYScale(domain: (minBPM - 10)...(maxBPM + 10))
-                    .frame(height: 200)
+                    .frame(height: sizeClass == .regular ? 320 : 200)
                 }
             }
         }

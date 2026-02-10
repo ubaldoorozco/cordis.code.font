@@ -10,6 +10,7 @@ import SwiftUI
 
 struct MeditationView: View {
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.horizontalSizeClass) private var sizeClass
 
     @State private var secondsLeft = 4 * 60
     @State private var faseText = ""
@@ -65,23 +66,25 @@ struct MeditationView: View {
 
                 // Breathing circle
                 ZStack {
+                    let s: CGFloat = sizeClass == .regular ? 1.4 : 1.0
+
                     // Outer glow
                     Circle()
                         .fill(
                             RadialGradient(
                                 colors: [.purple.opacity(0.3), .clear],
                                 center: .center,
-                                startRadius: 100,
-                                endRadius: 180
+                                startRadius: 100 * s,
+                                endRadius: 180 * s
                             )
                         )
-                        .frame(width: 300, height: 300)
+                        .frame(width: 300 * s, height: 300 * s)
                         .scaleEffect(breatheScale * 1.2)
 
                     // Background ring
                     Circle()
                         .stroke(Color.white.opacity(0.2), lineWidth: 12)
-                        .frame(width: 220, height: 220)
+                        .frame(width: 220 * s, height: 220 * s)
 
                     // Progress ring
                     Circle()
@@ -94,7 +97,7 @@ struct MeditationView: View {
                             ),
                             style: StrokeStyle(lineWidth: 12, lineCap: .round)
                         )
-                        .frame(width: 220, height: 220)
+                        .frame(width: 220 * s, height: 220 * s)
                         .rotationEffect(.degrees(-90))
                         .animation(.linear(duration: 1), value: secondsLeft)
 
@@ -107,7 +110,7 @@ struct MeditationView: View {
                                 endPoint: .bottomTrailing
                             )
                         )
-                        .frame(width: 160, height: 160)
+                        .frame(width: 160 * s, height: 160 * s)
                         .scaleEffect(breatheScale)
                         .overlay(
                             Circle()

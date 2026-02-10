@@ -85,6 +85,7 @@ struct HomeView: View {
                         Spacer(minLength: 90)
                     }
                     .padding(.vertical, 24)
+                    .frame(maxWidth: 700)
                 }
             }
             .navigationTitle("")

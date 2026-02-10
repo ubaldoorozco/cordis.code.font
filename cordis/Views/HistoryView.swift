@@ -51,6 +51,7 @@ struct HistoryView: View {
                         }
                     }
                     .padding()
+                    .frame(maxWidth: 700)
                 }
             }
             .navigationTitle(String(localized: "history_title"))

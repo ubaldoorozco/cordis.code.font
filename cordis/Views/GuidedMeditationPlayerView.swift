@@ -13,6 +13,7 @@ struct GuidedMeditationPlayerView: View {
     @State private var isDownloading = false
     @State private var downloadError: String?
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.horizontalSizeClass) private var sizeClass
 
     var body: some View {
         ZStack {
@@ -34,6 +35,7 @@ struct GuidedMeditationPlayerView: View {
                 Spacer()
             }
             .padding(.horizontal, 30)
+            .frame(maxWidth: 700)
         }
         .navigationBarTitleDisplayMode(.inline)
         .toolbarBackground(.ultraThinMaterial, for: .navigationBar)
@@ -84,6 +86,7 @@ struct GuidedMeditationPlayerView: View {
     private var pulsingCircle: some View {
         let amp = CGFloat(audioEngine.amplitude)
         let scale = 1.0 + amp * 0.3
+        let s: CGFloat = sizeClass == .regular ? 1.4 : 1.0
 
         return ZStack {
             // Outer glow
@@ -92,11 +95,11 @@ struct GuidedMeditationPlayerView: View {
                     RadialGradient(
                         colors: [.purple.opacity(0.3 + amp * 0.15), .clear],
                         center: .center,
-                        startRadius: 80,
-                        endRadius: 160
+                        startRadius: 80 * s,
+                        endRadius: 160 * s
                     )
                 )
-                .frame(width: 260, height: 260)
+                .frame(width: 260 * s, height: 260 * s)
                 .scaleEffect(scale * 1.15)
 
             // Main circle
@@ -111,13 +114,13 @@ struct GuidedMeditationPlayerView: View {
                         endPoint: .bottomTrailing
                     )
                 )
-                .frame(width: 200, height: 200)
+                .frame(width: 200 * s, height: 200 * s)
                 .scaleEffect(scale)
 
             // Inner ring
             Circle()
                 .stroke(.white.opacity(0.3), lineWidth: 2)
-                .frame(width: 200, height: 200)
+                .frame(width: 200 * s, height: 200 * s)
                 .scaleEffect(scale)
 
             // Icon

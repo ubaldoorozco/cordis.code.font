@@ -38,6 +38,7 @@ struct AboutView: View {
                         versionSection
                     }
                     .padding()
+                    .frame(maxWidth: 700)
                 }
             }
             .navigationTitle(String(localized: "about_title"))
@@ -132,7 +133,7 @@ struct AboutView: View {
                 creditGroup(
                     title: "Colegio Walden Dos de México",
                     icon: "building.columns.fill",
-                    names: ["Eduardo García", String(localized: "credits_placeholder")]
+                    names: ["Eduardo Hermosillo", "Eduardo García"]
                 )
             }
         }

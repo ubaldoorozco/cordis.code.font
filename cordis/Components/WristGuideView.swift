@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct WristGuideView: View {
+    @Environment(\.horizontalSizeClass) private var sizeClass
     @State private var isPulsing = false
     @State private var showFingers = false
 
@@ -80,6 +81,7 @@ struct WristGuideView: View {
             }
         }
         .frame(width: 200, height: 380)
+        .scaleEffect(sizeClass == .regular ? 1.3 : 1.0)
         .onAppear {
             withAnimation(.easeInOut(duration: 0.8).repeatForever(autoreverses: true)) {
                 isPulsing = true

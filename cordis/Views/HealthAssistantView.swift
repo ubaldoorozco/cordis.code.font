@@ -94,7 +94,7 @@ struct HealthAssistantView: View {
 
                         Spacer(minLength: 16)
                     }
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .frame(maxWidth: 700, alignment: .leading)
                     .padding()
                 }
                 .scrollBounceBehavior(.basedOnSize)

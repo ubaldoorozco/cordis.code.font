@@ -82,6 +82,7 @@ struct ManualMeasurementView: View {
 
                 Spacer()
             }
+            .frame(maxWidth: 700)
         }
         .sheet(isPresented: $showResult) {
             resultSheet

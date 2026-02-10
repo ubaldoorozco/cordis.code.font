@@ -72,6 +72,7 @@ struct SettingsView: View {
                         disclaimerSection
                     }
                     .padding()
+                    .frame(maxWidth: 700)
                 }
             }
             .navigationTitle(String(localized: "settings_title"))

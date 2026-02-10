@@ -72,6 +72,7 @@
       }
     },
     "about_developed_by" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -88,6 +89,7 @@
       }
     },
     "about_institution" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -378,6 +380,38 @@
         }
       }
     },
+    "assistant_summary" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Summary"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Resumen"
+          }
+        }
+      }
+    },
+    "assistant_summary_detail %@ %@ %lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Last: %1$@ · 7 days: %2$@ · Streak: %3$lld days"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Último: %1$@ · 7 días: %2$@ · Racha: %3$lld días"
+          }
+        }
+      }
+    },
     "assistant_title" : {
       "localizations" : {
         "en" : {
@@ -395,12 +429,6 @@
       }
     },
     "BPM" : {
-
-    },
-    "BPM Over Time" : {
-
-    },
-    "Colegio Walden Dos" : {
 
     },
     "common_cancel" : {
@@ -524,6 +552,54 @@
     },
     "CORDIS" : {
 
+    },
+    "credits_development" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Development"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Desarrollo"
+          }
+        }
+      }
+    },
+    "credits_guided_meditations" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guided Meditations"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meditaciones guiadas"
+          }
+        }
+      }
+    },
+    "credits_placeholder" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "[To be confirmed]"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "[Por confirmar]"
+          }
+        }
+      }
     },
     "Daily reminder to record your BPM" : {
 
@@ -717,6 +793,1606 @@
         }
       }
     },
+    "faq_a_01 %@ %@ %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, your data:\n• Last: %2$@\n• 7-day average: %3$@\n\nTo lower it now (2–3 min):\n• Inhale 4s, exhale 6–8s (6 times)\n• Drink water\n• Reduce stimuli for 5–10 min"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, tus datos:\n• Último: %2$@\n• Promedio 7 días: %3$@\n\nPara bajarlo ahora (2–3 min):\n• Inhala 4s, exhala 6–8s (6 veces)\n• Toma agua\n• Baja estímulos 5–10 min"
+          }
+        }
+      }
+    },
+    "faq_a_02" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Take a pause:\n• Sit up straight\n• Exhale slowly (longer than inhaling)\n• 6 cycles of 4s / 6–8s\n• Water and rest for 5 min"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Haz una pausa:\n• Siéntate recto\n• Exhala lento (más largo que inhalar)\n• 6 ciclos de 4s / 6–8s\n• Agua y descansa 5 min"
+          }
+        }
+      }
+    },
+    "faq_a_03" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quick:\n• Inhale 4s\n• Exhale 6–8s\n• Repeat for 1 minute\nThen: water and a 5-min screen-free break."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rápido:\n• Inhala 4s\n• Exhala 6–8s\n• Repite 1 minuto\nDespués: agua y pausa sin pantalla 5 min."
+          }
+        }
+      }
+    },
+    "faq_a_04" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "When you get angry, your body fires up.\n• Exhale slowly 10 times\n• Release shoulders and jaw\n• Step away for 2 minutes from the situation"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cuando te enojas, el cuerpo se prende.\n• Exhala lento 10 veces\n• Suelta hombros y mandíbula\n• Aléjate 2 minutos de la situación"
+          }
+        }
+      }
+    },
+    "faq_a_05" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mini plan for the day:\n• 3 breathing breaks (1 min each)\n• 10-min gentle walk\n• Less screen time in the afternoon\n• Go to bed at the same time"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mini plan del día:\n• 3 pausas de respiración (1 min cada una)\n• 10 min caminata suave\n• Menos pantallas en la tarde\n• Dormir a la misma hora"
+          }
+        }
+      }
+    },
+    "faq_a_06" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quick plan (2–3 min):\n• 6 slow breaths (4s / 6–8s)\n• Relax shoulders and jaw\n• Focus on the first question and go step by step"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plan rápido (2–3 min):\n• 6 respiraciones lentas (4s / 6–8s)\n• Relaja hombros y mandíbula\n• Enfócate en la primera pregunta y avanza paso a paso"
+          }
+        }
+      }
+    },
+    "faq_a_07" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mental trick:\n• \"Just do the next step\"\n• Breathe slowly 6 times\n• Start with the easiest question"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Truco mental:\n• \"Solo hago el siguiente paso\"\n• Respira 6 veces lento\n• Empieza por la pregunta más fácil"
+          }
+        }
+      }
+    },
+    "faq_a_08" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quick method:\n• 10-min focus (no phone)\n• 2-min break\n• Repeat 3 times"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Método rápido:\n• 10 min enfoque (sin celular)\n• 2 min descanso\n• Repite 3 veces"
+          }
+        }
+      }
+    },
+    "faq_a_09" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lower the pressure step by step:\n• Write down 3 tasks (only 3)\n• Start with the shortest one\n• 2-min break every 10–15 min"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Baja la presión en pasos:\n• Escribe 3 tareas (solo 3)\n• Empieza por la más corta\n• Descanso 2 min cada 10–15 min"
+          }
+        }
+      }
+    },
+    "faq_a_10" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Today:\n• Avoid caffeine if it speeds you up\n• Drink water\n• Short nap 15–25 min if possible\n• Go to bed earlier"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hoy:\n• Evita cafeína si te acelera\n• Toma agua\n• Siesta corta 15–25 min si puedes\n• Duerme más temprano"
+          }
+        }
+      }
+    },
+    "faq_a_11" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Before bed:\n• Turn off screens 30 min before\n• Dim lights\n• Slow breathing for 2 min\n• Gentle stretching for 1 min"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Antes de dormir:\n• Apaga pantallas 30 min antes\n• Luz baja\n• Respiración lenta 2 min\n• Estiramiento suave 1 min"
+          }
+        }
+      }
+    },
+    "faq_a_12" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "If you wake up:\n• Don't grab your phone\n• Breathe slowly for 1 minute\n• Get comfortable again"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Si te despiertas:\n• No agarres el celular\n• Respira lento 1 minuto\n• Vuelve a acostarte cómodo"
+          }
+        }
+      }
+    },
+    "faq_a_13" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To push through:\n• Water\n• Walk 5–10 min\n• Natural light\n• 15–20 min nap if possible"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Para aguantar:\n• Agua\n• Caminar 5–10 min\n• Luz natural\n• Siesta 15–20 min si puedes"
+          }
+        }
+      }
+    },
+    "faq_a_14" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Caffeine can raise your heart rate.\n• Don't have more today\n• Water + slow breathing 2–3 min\n• Rest without screens"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La cafeína puede subir el ritmo.\n• No tomes más hoy\n• Agua + respiración lenta 2–3 min\n• Descansa sin pantallas"
+          }
+        }
+      }
+    },
+    "faq_a_15" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "It depends on your body.\nIf it speeds you up:\n• Have less\n• Avoid in the afternoon/evening\n• Switch to water"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Depende de tu cuerpo.\nSi te acelera:\n• Toma menos\n• Evita en la tarde/noche\n• Cambia por agua"
+          }
+        }
+      }
+    },
+    "faq_a_16" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Do this:\n• Don't have another one\n• Water\n• Slow breathing 2–3 min\n• Reduce stimuli"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Haz esto:\n• No tomes otra\n• Agua\n• Respiración lenta 2–3 min\n• Baja estímulos"
+          }
+        }
+      }
+    },
+    "faq_a_17" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "If you just exercised, it's normal.\n• Walk gently 3–5 min\n• Breathe slowly (exhale longer)\n• Stay hydrated"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Si venías de ejercicio es normal.\n• Camina suave 3–5 min\n• Respira lento (exhala más largo)\n• Hidrátate"
+          }
+        }
+      }
+    },
+    "faq_a_18" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yes, but keep it gentle:\n• 10–20 min walk\n• Stretching\n• Avoid high intensity if you're already amped up"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sí, pero suave:\n• Caminata 10–20 min\n• Estiramiento\n• Evita intensidad alta si ya estás acelerado"
+          }
+        }
+      }
+    },
+    "faq_a_19" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slow down:\n• Walk gently\n• Breathe slowly\n• Water\nIf it doesn't improve, ask an adult for help."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Baja el ritmo:\n• Camina suave\n• Respira lento\n• Agua\nSi no mejora, pide ayuda a un adulto."
+          }
+        }
+      }
+    },
+    "faq_a_20 %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your 7-day average: %@\nWhat matters is seeing patterns.\nIf it goes up for several days: check sleep, caffeine, water, and breathing."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tu promedio 7 días: %@\nLo importante es ver patrones.\nSi sube varios días: revisa sueño, cafeína, agua y respiración."
+          }
+        }
+      }
+    },
+    "faq_a_21" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Common reasons:\n• poor sleep\n• more caffeine\n• more stress\n• less water\nCheck what changed this week."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cosas comunes:\n• dormir poco\n• más cafeína\n• más estrés\n• menos agua\nRevisa qué cambió esta semana."
+          }
+        }
+      }
+    },
+    "faq_a_22" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "It's a simple guide:\n• Low: below expected range\n• Medium: within expected range\n• High: above expected range\nWhat matters is seeing patterns, not a single reading."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Es una guía simple:\n• Bajo: debajo de lo esperado\n• Medio: dentro del rango esperado\n• Alto: arriba de lo esperado\nLo ideal es ver patrones, no un solo registro."
+          }
+        }
+      }
+    },
+    "faq_a_23 %lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your streak: %lld days.\n• Measure once a day at the same time\n• Set a reminder\n• Consistency > perfection"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tu racha: %lld días.\n• Mide 1 vez al día a la misma hora\n• Pon un recordatorio\n• Consistencia > perfección"
+          }
+        }
+      }
+    },
+    "faq_a_24" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "It happens sometimes.\n• Pick it back up today\n• Set a reminder\n• What matters is getting back to it"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A veces pasa.\n• Retoma hoy\n• Pon recordatorio\n• Lo importante es volver"
+          }
+        }
+      }
+    },
+    "faq_a_25" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ideal:\n• Same time every day\n• At rest (calm)\nE.g.: when you wake up or before bed."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ideal:\n• Misma hora cada día\n• En reposo (calmado)\nEj: al despertar o antes de dormir."
+          }
+        }
+      }
+    },
+    "faq_a_26" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "It could be sleep, stress, food, water, or caffeine.\nTell me:\n1) Did you sleep well?\n2) Did you have caffeine?\n3) Did you just exercise?"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Puede ser por sueño, estrés, comida, agua o cafeína.\nDime:\n1) ¿Dormiste bien?\n2) ¿Tomaste cafeína?\n3) ¿Venías de ejercicio?"
+          }
+        }
+      }
+    },
+    "faq_a_27" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simple habits:\n• Sleep well\n• Drink water\n• Walk 10–20 min\n• Less screen time at night\n• 2-min breathing daily"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hábitos simples:\n• Dormir bien\n• Tomar agua\n• Caminar 10–20 min\n• Menos pantallas en la noche\n• Respiración 2 min al día"
+          }
+        }
+      }
+    },
+    "faq_a_28" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Try:\n• 10-min break with no notifications\n• Water\n• Slow breathing 1–2 min\n• Come back and limit your time"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prueba:\n• Pausa 10 min sin notificaciones\n• Agua\n• Respiración lenta 1–2 min\n• Vuelve y limita el tiempo"
+          }
+        }
+      }
+    },
+    "faq_a_29" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Let's go step by step:\n1) Breathe slowly for 1 minute\n2) Drink water\n3) Sit down for 2 minutes"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vamos en orden:\n1) Respira lento 1 minuto\n2) Toma agua\n3) Siéntate 2 minutos"
+          }
+        }
+      }
+    },
+    "faq_a_30 %@ %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Today's tip:\n• 10-min gentle walk\n• 2 extra glasses of water\n• 1 minute of slow breathing\n\nYour data: last %1$@ • 7 days %2$@."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Consejo de hoy:\n• 10 min caminata suave\n• 2 vasos de agua extra\n• 1 minuto de respiración lenta\n\nTus datos: último %1$@ • 7 días %2$@."
+          }
+        }
+      }
+    },
+    "faq_a_31" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "On waking, this can happen due to stress, poor sleep, or yesterday's caffeine.\n• Breathe slowly for 1 minute (exhale longer)\n• Drink water\n• Move gently for 2–3 min"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Al despertar puede pasar por estrés, poco sueño o cafeína del día anterior.\n• Respira lento 1 minuto (exhala más largo)\n• Toma agua\n• Muévete suave 2–3 min"
+          }
+        }
+      }
+    },
+    "faq_a_32" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "First, lower the alarm mode:\n1) Exhale slowly 10 times\n2) Drink water\n3) Sit down for 2 minutes without a screen"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Primero baja el modo alarma:\n1) Exhala lento 10 veces\n2) Toma agua\n3) Siéntate 2 minutos sin pantalla"
+          }
+        }
+      }
+    },
+    "faq_a_33" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "• Shoulders up 3s and release (x5)\n• Relax jaw\n• 6 slow breaths"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "• Hombros arriba 3s y suelta (x5)\n• Afloja mandíbula\n• 6 respiraciones lentas"
+          }
+        }
+      }
+    },
+    "faq_a_34" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "• Pick 1 small task and start for 5 minutes\n• Rest for 2 minutes\n• Repeat"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "• Elige 1 tarea pequeña y empieza 5 minutos\n• Descansa 2 minutos\n• Repite"
+          }
+        }
+      }
+    },
+    "faq_a_35" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "• Breathe slowly 3 times\n• Read the question carefully\n• Start with the easiest part"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "• Respira 3 veces lento\n• Lee la pregunta despacio\n• Empieza por lo más fácil"
+          }
+        }
+      }
+    },
+    "faq_a_36" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "• 6 slow breaths\n• Release shoulders\n• Speak slower than usual"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "• 6 respiraciones lentas\n• Suelta hombros\n• Habla más lento de lo normal"
+          }
+        }
+      }
+    },
+    "faq_a_37" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "• Phone far away\n• 10-min study / 2-min break\n• During break: water, no social media"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "• Celular lejos\n• 10 min estudio / 2 min descanso\n• En el descanso: agua, no redes"
+          }
+        }
+      }
+    },
+    "faq_a_38" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "• Turn off screen\n• Breathe slowly for 2 min\n• Relax body (jaw/shoulders)"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "• Apaga pantalla\n• Respira lento 2 min\n• Relaja cuerpo (mandíbula/hombros)"
+          }
+        }
+      }
+    },
+    "faq_a_39" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "• Water and natural light\n• Light meal\n• 15–20 min nap if possible\n• Go to bed earlier tonight"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "• Agua y luz natural\n• Comida ligera\n• Siesta 15–20 min si puedes\n• Hoy duerme más temprano"
+          }
+        }
+      }
+    },
+    "faq_a_40" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "• Water\n• Breathe deeply 5 times\n• Stretch back/shoulders discreetly"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "• Agua\n• Respira profundo 5 veces\n• Estira espalda/hombros discretamente"
+          }
+        }
+      }
+    },
+    "faq_a_41" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "• Water\n• Slow breathing for 2 min\n• Avoid more sugar today"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "• Agua\n• Respiración lenta 2 min\n• Evita más azúcar hoy"
+          }
+        }
+      }
+    },
+    "faq_a_42" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "If it affects your sleep:\n• Avoid caffeine from the afternoon on\n• Better water or something caffeine-free"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Si te afecta el sueño:\n• Evita cafeína desde la tarde\n• Mejor agua o algo sin cafeína"
+          }
+        }
+      }
+    },
+    "faq_a_43" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "• Walk gently 3–5 min\n• Water\n• Breathe slowly"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "• Camina suave 3–5 min\n• Agua\n• Respira lento"
+          }
+        }
+      }
+    },
+    "faq_a_44" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "• Sit down\n• Water\n• Breathe slowly\nIf it continues, ask an adult for help."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "• Siéntate\n• Agua\n• Respira lento\nSi sigue fuerte, pide ayuda a un adulto."
+          }
+        }
+      }
+    },
+    "faq_a_45 %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Signs:\n• 7-day average goes down or stays stable\n• You feel calmer\nToday: %@."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Señales:\n• Promedio 7 días baja o se mantiene estable\n• Te sientes más calmado\nHoy: %@."
+          }
+        }
+      }
+    },
+    "faq_a_46" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "It's normal because of:\n• Sleep, caffeine, stress, or exercise\nWhat matters is the pattern over several days."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Es normal por:\n• Sueño, cafeína, estrés o ejercicio\nLo importante es el patrón de varios días."
+          }
+        }
+      }
+    },
+    "faq_a_47" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The streak helps you stay consistent to see real patterns."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La racha te ayuda a ser constante para ver patrones reales."
+          }
+        }
+      }
+    },
+    "faq_a_48" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "• Set a reminder\n• Pick a fixed time\n• Pair it with a habit (brushing teeth / before bed)"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "• Pon recordatorio\n• Elige una hora fija\n• Únelo a un hábito (dientes / antes de dormir)"
+          }
+        }
+      }
+    },
+    "faq_a_49" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "• Water\n• 10-min walk\n• 2-min slow breathing\n• Less screen time in the afternoon"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "• Agua\n• 10 min caminata\n• 2 min respiración lenta\n• Menos pantalla en la tarde"
+          }
+        }
+      }
+    },
+    "faq_a_50" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3-min plan:\n1) Breathe slowly for 1 min\n2) Stretch shoulders/neck for 1 min\n3) Water + screen-free break for 1 min"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Plan 3 min:\n1) Respira lento 1 min\n2) Estira hombros/cuello 1 min\n3) Agua + pausa sin pantalla 1 min"
+          }
+        }
+      }
+    },
+    "faq_q_01" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "How do I lower my heart rate now?"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Cómo bajo mi ritmo ahora?"
+          }
+        }
+      }
+    },
+    "faq_q_02" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I feel my heart racing, what should I do?"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Me siento acelerado, ¿qué hago?"
+          }
+        }
+      }
+    },
+    "faq_q_03" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "How can I relax quickly?"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Cómo me relajo rápido?"
+          }
+        }
+      }
+    },
+    "faq_q_04" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What if I'm angry and my heart rate goes up?"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Qué hago si estoy enojado y mi ritmo sube?"
+          }
+        }
+      }
+    },
+    "faq_q_05" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What if I feel nervous all day?"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Qué hago si siento nervios todo el día?"
+          }
+        }
+      }
+    },
+    "faq_q_06" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I'm nervous about an exam"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estoy nervioso por un examen"
+          }
+        }
+      }
+    },
+    "faq_q_07" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I'm afraid of failing an exam"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Me da miedo fallar en un examen"
+          }
+        }
+      }
+    },
+    "faq_q_08" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I can't concentrate while studying"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No puedo concentrarme estudiando"
+          }
+        }
+      }
+    },
+    "faq_q_09" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I feel pressured by school"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Me siento presionado por la escuela"
+          }
+        }
+      }
+    },
+    "faq_q_10" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I didn't sleep well"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No dormí bien"
+          }
+        }
+      }
+    },
+    "faq_q_11" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What should I do before bed to rest better?"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Qué hago antes de dormir para descansar mejor?"
+          }
+        }
+      }
+    },
+    "faq_q_12" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I wake up during the night"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Me despierto en la noche"
+          }
+        }
+      }
+    },
+    "faq_q_13" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I'm sleepy during the day"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tengo sueño en el día"
+          }
+        }
+      }
+    },
+    "faq_q_14" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I drank coffee and feel my heart racing"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tomé café y me siento acelerado"
+          }
+        }
+      }
+    },
+    "faq_q_15" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "How much caffeine should I have?"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Cuánta cafeína debería tomar?"
+          }
+        }
+      }
+    },
+    "faq_q_16" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I drank an energy drink, what should I do?"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tomé energética, ¿qué hago?"
+          }
+        }
+      }
+    },
+    "faq_q_17" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I just came from exercising"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vengo de ejercicio"
+          }
+        }
+      }
+    },
+    "faq_q_18" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Is it okay to exercise if I'm stressed?"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Está bien hacer ejercicio si estoy estresado?"
+          }
+        }
+      }
+    },
+    "faq_q_19" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I'm out of breath after running"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Me falta aire después de correr"
+          }
+        }
+      }
+    },
+    "faq_q_20" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "How's my average doing?"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Cómo va mi promedio?"
+          }
+        }
+      }
+    },
+    "faq_q_21" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Why did my average go up this week?"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Por qué mi promedio subió esta semana?"
+          }
+        }
+      }
+    },
+    "faq_q_22" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What does Low / Medium / High mean?"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Qué significa Bajo / Medio / Alto?"
+          }
+        }
+      }
+    },
+    "faq_q_23" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "How do I increase my streak?"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Cómo subo mi racha?"
+          }
+        }
+      }
+    },
+    "faq_q_24" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I forgot a day, did I lose my streak?"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se me olvidó un día, ¿perdí mi racha?"
+          }
+        }
+      }
+    },
+    "faq_q_25" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What's the best time to measure my BPM?"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿A qué hora es mejor medir mi BPM?"
+          }
+        }
+      }
+    },
+    "faq_q_26" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Why do I feel weird today?"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Por qué me siento raro hoy?"
+          }
+        }
+      }
+    },
+    "faq_q_27" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What habits improve my heart rate in general?"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Qué hábitos mejoran mi ritmo en general?"
+          }
+        }
+      }
+    },
+    "faq_q_28" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What if I get stressed by social media?"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Qué hago si me estreso por redes sociales?"
+          }
+        }
+      }
+    },
+    "faq_q_29" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What if I don't know what's wrong with me?"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Qué hago si no sé qué me pasa?"
+          }
+        }
+      }
+    },
+    "faq_q_30" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Give me a tip for today"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dame un consejo para hoy"
+          }
+        }
+      }
+    },
+    "faq_q_31" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "My heart feels fast when I wake up"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Siento mi corazón rápido al despertar"
+          }
+        }
+      }
+    },
+    "faq_q_32" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I'm very stressed, what do I do first?"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estoy muy estresado, ¿qué hago primero?"
+          }
+        }
+      }
+    },
+    "faq_q_33" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I feel tense (shoulders/neck)"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Me siento tenso (hombros/cuello)"
+          }
+        }
+      }
+    },
+    "faq_q_34" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I get overwhelmed when I have a lot of homework"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Me altero cuando tengo mucha tarea"
+          }
+        }
+      }
+    },
+    "faq_q_35" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What if my mind goes blank during an exam?"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Qué hago si me quedo en blanco en el examen?"
+          }
+        }
+      }
+    },
+    "faq_q_36" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I'm nervous before presenting"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estoy nervioso antes de exponer"
+          }
+        }
+      }
+    },
+    "faq_q_37" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "How do I study without getting distracted by my phone?"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Cómo estudio sin distraerme con el celular?"
+          }
+        }
+      }
+    },
+    "faq_q_38" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I'm sleepy but can't fall asleep"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tengo sueño pero no me puedo dormir"
+          }
+        }
+      }
+    },
+    "faq_q_39" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What if I went to bed late and have school today?"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Qué hago si dormí tarde y hoy tengo escuela?"
+          }
+        }
+      }
+    },
+    "faq_q_40" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I fall asleep in class"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Me duermo en clase"
+          }
+        }
+      }
+    },
+    "faq_q_41" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I drank soda and feel my heart racing"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tomé refresco y me siento acelerado"
+          }
+        }
+      }
+    },
+    "faq_q_42" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "When should I stop drinking coffee during the day?"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Cuándo debo dejar de tomar café en el día?"
+          }
+        }
+      }
+    },
+    "faq_q_43" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "How do I recover after exercising?"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Qué hago para recuperarme después del ejercicio?"
+          }
+        }
+      }
+    },
+    "faq_q_44" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I felt a bit dizzy after exercising"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Me mareé un poco después de hacer ejercicio"
+          }
+        }
+      }
+    },
+    "faq_q_45" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "How do I know if I'm improving?"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Cómo sé si estoy mejorando?"
+          }
+        }
+      }
+    },
+    "faq_q_46" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Why was it high one day and low another?"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Por qué un día salió alto y otro día bajo?"
+          }
+        }
+      }
+    },
+    "faq_q_47" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What's the streak for?"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Para qué sirve la racha?"
+          }
+        }
+      }
+    },
+    "faq_q_48" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What if I forget to measure?"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Qué hago si se me olvida medir?"
+          }
+        }
+      }
+    },
+    "faq_q_49" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What can I do today to feel better?"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Qué puedo hacer hoy para sentirme mejor?"
+          }
+        }
+      }
+    },
+    "faq_q_50" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Give me a quick 3-minute plan"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dame un plan rápido de 3 minutos"
+          }
+        }
+      }
+    },
     "healthkit_connect" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -794,6 +2470,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "HealthKit no está disponible en este dispositivo"
+          }
+        }
+      }
+    },
+    "healthkit_save" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save reading"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guardar lectura"
           }
         }
       }
@@ -1253,6 +2945,22 @@
         }
       }
     },
+    "manual_pulse_point" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pulse point (radial artery)"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Punto de pulso (arteria radial)"
+          }
+        }
+      }
+    },
     "manual_ready" : {
       "localizations" : {
         "en" : {
@@ -1672,9 +3380,6 @@
         }
       }
     },
-    "Meditación" : {
-
-    },
     "meditation_breathe" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -1756,6 +3461,22 @@
         }
       }
     },
+    "meditation_download_error" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Could not download audio"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se pudo descargar el audio"
+          }
+        }
+      }
+    },
     "meditation_exhale" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -1819,6 +3540,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Inhala"
+          }
+        }
+      }
+    },
+    "meditation_item_title %lld" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meditation %lld"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meditación %lld"
           }
         }
       }
@@ -1918,9 +3655,6 @@
           }
         }
       }
-    },
-    "México" : {
-
     },
     "Min" : {
 
@@ -2933,9 +4667,6 @@
         }
       }
     },
-    "Resumen" : {
-
-    },
     "settings_about" : {
       "localizations" : {
         "en" : {
@@ -3420,6 +5151,22 @@
         }
       }
     },
+    "stats_bpm_over_time" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "BPM Over Time"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "BPM a lo largo del tiempo"
+          }
+        }
+      }
+    },
     "stats_chat" : {
       "localizations" : {
         "en" : {
@@ -3661,6 +5408,22 @@
         }
       }
     },
+    "tab_meditation" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meditation"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meditación"
+          }
+        }
+      }
+    },
     "tab_settings" : {
       "localizations" : {
         "en" : {
@@ -3689,22 +5452,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Estadísticas"
-          }
-        }
-      }
-    },
-    "tab_meditation" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Meditation"
-          }
-        },
-        "es-419" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Meditación"
           }
         }
       }
@@ -3792,12 +5539,18 @@
         }
       }
     },
-    "Último: %@ • 7 días: %@ • Racha: %lld días" : {
+    "validation_bpm_range" : {
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter a valid BPM (30-220)"
+          }
+        },
         "es-419" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Último: %1$@ • 7 días: %2$@ • Racha: %3$lld días"
+            "state" : "translated",
+            "value" : "Ingresa un BPM válido (30-220)"
           }
         }
       }

@@ -11,6 +11,7 @@ import SwiftData
 import Charts
 
 struct StatsView: View {
+    @Binding var selectedTab: Int
     @Query(sort: \StressEntry.timestamp, order: .reverse)
     private var entries: [StressEntry]
 
@@ -95,7 +96,7 @@ struct StatsView: View {
                         showChat = true
                     } label: {
                         Image(systemName: "bubble.left.and.bubble.right.fill")
-                            .foregroundStyle(.white)
+                            .foregroundStyle(.primary)
                     }
                 }
             }
@@ -103,8 +104,7 @@ struct StatsView: View {
                 HealthAssistantView()
             }
         }
-        .toolbarColorScheme(.dark, for: .navigationBar)
-        .toolbarBackground(.hidden, for: .navigationBar)
+        .toolbarBackground(.ultraThinMaterial, for: .navigationBar)
     }
 
     // MARK: - Period Selector
@@ -182,7 +182,7 @@ struct StatsView: View {
     private var chartSection: some View {
         GlassCard {
             VStack(alignment: .leading, spacing: 12) {
-                Text("BPM Over Time")
+                Text(String(localized: "stats_bpm_over_time"))
                     .font(.headline)
                     .foregroundStyle(.secondary)
 
@@ -250,21 +250,29 @@ struct StatsView: View {
     // MARK: - Total Entries Card
 
     private var totalEntriesCard: some View {
-        GlassCard(padding: 12) {
-            HStack {
-                Image(systemName: "list.bullet")
-                    .foregroundStyle(.purple)
-                Text(String(localized: "stats_entries"))
-                    .font(.subheadline)
-                Spacer()
-                Text("\(entries.count)")
-                    .font(.headline)
+        Button {
+            selectedTab = 1
+        } label: {
+            GlassCard(padding: 12) {
+                HStack {
+                    Image(systemName: "list.bullet")
+                        .foregroundStyle(.purple)
+                    Text(String(localized: "stats_entries"))
+                        .font(.subheadline)
+                    Spacer()
+                    Text("\(entries.count)")
+                        .font(.headline)
+                    Image(systemName: "chevron.right")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
             }
         }
+        .buttonStyle(.plain)
     }
 }
 
 #Preview {
-    StatsView()
+    StatsView(selectedTab: .constant(2))
         .modelContainer(for: [StressEntry.self], inMemory: true)
 }

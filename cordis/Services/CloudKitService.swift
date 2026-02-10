@@ -12,9 +12,23 @@ struct GuidedMeditationItem: Identifiable {
     let title: String
     let duration: Int
     let description: String
+    let descriptionEN: String
     let sortOrder: Int
     let recordChangeTag: String?
     var localAudioURL: URL?
+    var displayIndex: Int = 0
+
+    var localizedTitle: String {
+        String(localized: "meditation_item_title \(displayIndex)")
+    }
+
+    var localizedDescription: String {
+        let isEnglish = Locale.current.language.languageCode?.identifier == "en"
+        if isEnglish {
+            return descriptionEN.isEmpty ? "" : descriptionEN
+        }
+        return description
+    }
 }
 
 @Observable
@@ -49,6 +63,7 @@ final class CloudKitService {
                 let title = record["title"] as? String ?? ""
                 let duration = record["duration"] as? Int ?? 0
                 let description = record["thumbnailDescription"] as? String ?? ""
+                let descriptionEN = record["description_en"] as? String ?? ""
                 let sortOrder = record["sortOrder"] as? Int ?? 0
 
                 let localURL = localAudioURL(for: record.recordID.recordName)
@@ -59,6 +74,7 @@ final class CloudKitService {
                     title: title,
                     duration: duration,
                     description: description,
+                    descriptionEN: descriptionEN,
                     sortOrder: sortOrder,
                     recordChangeTag: record.recordChangeTag,
                     localAudioURL: fileExists ? localURL : nil
@@ -66,6 +82,9 @@ final class CloudKitService {
             }
 
             meditations = items.sorted { $0.sortOrder < $1.sortOrder }
+            for i in meditations.indices {
+                meditations[i].displayIndex = i + 1
+            }
         } catch {
             print("❌ CloudKit fetch error: \(error)")
             if meditations.isEmpty {
@@ -126,6 +145,7 @@ final class CloudKitService {
                 title: name,
                 duration: 0,
                 description: "",
+                descriptionEN: "",
                 sortOrder: cached.count,
                 recordChangeTag: nil,
                 localAudioURL: file
@@ -134,6 +154,9 @@ final class CloudKitService {
 
         if !cached.isEmpty {
             meditations = cached
+            for i in meditations.indices {
+                meditations[i].displayIndex = i + 1
+            }
         }
     }
 }

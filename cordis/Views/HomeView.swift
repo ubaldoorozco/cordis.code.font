@@ -10,6 +10,7 @@ import SwiftUI
 import SwiftData
 
 struct HomeView: View {
+    @Binding var selectedTab: Int
     @Environment(\.modelContext) private var context
     @Query(sort: \StressEntry.timestamp, order: .reverse) private var entries: [StressEntry]
     @Query private var statsArr: [UserStats]
@@ -22,6 +23,9 @@ struct HomeView: View {
     @State private var confetti = false
     @State private var showingMeditation = false
     @State private var showingManualMeasurement = false
+    @State private var showInputError = false
+    @State private var inputShakeOffset: CGFloat = 0
+    @State private var showHealthKitSaveConfirmation = false
 
     @FocusState private var bpmFocused: Bool
 
@@ -119,12 +123,12 @@ struct HomeView: View {
         VStack(spacing: 8) {
             Text("CORDIS")
                 .font(.system(size: 42, weight: .black, design: .rounded))
-                .foregroundColor(.white)
-                .shadow(color: .black.opacity(0.2), radius: 10)
+                .foregroundColor(.primary)
+                .shadow(color: .black.opacity(0.15), radius: 10)
 
             Text(String(localized: "home_title"))
                 .font(.title3)
-                .foregroundColor(.white.opacity(0.8))
+                .foregroundColor(.secondary)
         }
     }
 
@@ -147,17 +151,19 @@ struct HomeView: View {
                     TextField(
                         "",
                         text: $bpmInput,
-                        prompt: Text("72").foregroundStyle(.white.opacity(0.3))
+                        prompt: Text("72").foregroundStyle(.primary.opacity(0.3))
                     )
                     .font(.system(size: 56, weight: .bold, design: .rounded))
-                    .foregroundStyle(.white)
+                    .foregroundStyle(.primary)
                     #if os(iOS)
                     .keyboardType(.numberPad)
                     #endif
                     .multilineTextAlignment(.center)
                     .focused($bpmFocused)
+                    .offset(x: inputShakeOffset)
                     .onChange(of: bpmInput) { _, newValue in
                         bpmInput = newValue.filter(\.isNumber)
+                        if showInputError { showInputError = false }
                     }
                     #if os(iOS)
                     .toolbar {
@@ -167,6 +173,13 @@ struct HomeView: View {
                         }
                     }
                     #endif
+
+                    if showInputError {
+                        Text(String(localized: "validation_bpm_range"))
+                            .font(.caption)
+                            .foregroundStyle(.red)
+                            .transition(.opacity)
+                    }
 
                     HStack(spacing: 12) {
                         GlassButton(String(localized: "home_save"), icon: "heart.fill", style: .primary) {
@@ -216,13 +229,27 @@ struct HomeView: View {
 
                 Spacer()
 
+                if healthKit.latestHeartRate != nil {
+                    Button {
+                        if let hr = healthKit.latestHeartRate {
+                            saveHealthKitEntry(bpm: Int(hr))
+                            withAnimation { showHealthKitSaveConfirmation = true }
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                withAnimation { showHealthKitSaveConfirmation = false }
+                            }
+                        }
+                    } label: {
+                        Image(systemName: showHealthKitSaveConfirmation ? "checkmark.circle.fill" : "heart.circle.fill")
+                            .font(.title2)
+                            .foregroundStyle(showHealthKitSaveConfirmation ? .white : .green)
+                            .contentTransition(.symbolEffect(.replace))
+                    }
+                    .accessibilityLabel(String(localized: "healthkit_save"))
+                }
+
                 Button {
                     Task {
                         await healthKit.fetchLatestHeartRate()
-                        // Save the fetched reading
-                        if let hr = healthKit.latestHeartRate {
-                            saveHealthKitEntry(bpm: Int(hr))
-                        }
                     }
                 } label: {
                     Image(systemName: "arrow.clockwise")
@@ -332,10 +359,12 @@ struct HomeView: View {
     private var quickActionsSection: some View {
         VStack(spacing: 12) {
             HStack(spacing: 12) {
-                GlassPillButton(String(localized: "stats_entries"), icon: "list.bullet") {}
+                GlassPillButton(String(localized: "stats_entries"), icon: "list.bullet") {
+                    selectedTab = 1
+                }
                 Text("\(entries.count)")
                     .font(.headline)
-                    .foregroundStyle(.white)
+                    .foregroundStyle(.primary)
             }
         }
     }
@@ -352,9 +381,21 @@ struct HomeView: View {
     private func analizar() {
         let trimmed = bpmInput.trimmingCharacters(in: .whitespacesAndNewlines)
         guard let bpm = Int(trimmed), (30...220).contains(bpm) else {
-            bpmInput = ""
+            withAnimation(.spring(duration: 0.3)) { showInputError = true }
+            // Shake animation
+            withAnimation(.default) { inputShakeOffset = 10 }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                withAnimation(.default) { inputShakeOffset = -8 }
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                withAnimation(.default) { inputShakeOffset = 5 }
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                withAnimation(.default) { inputShakeOffset = 0 }
+            }
             return
         }
+        showInputError = false
         saveEntry(bpm: bpm)
         bpmInput = ""
         bpmFocused = false
@@ -448,6 +489,6 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView()
+    HomeView(selectedTab: .constant(0))
         .modelContainer(for: [StressEntry.self, UserStats.self, AppSettings.self], inMemory: true)
 }

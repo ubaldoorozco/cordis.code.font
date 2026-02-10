@@ -25,7 +25,7 @@ struct GlassButton: View {
             case .primary:
                 return [Color.purple.opacity(0.8), Color.indigo.opacity(0.8)]
             case .secondary:
-                return [Color.gray.opacity(0.3), Color.gray.opacity(0.2)]
+                return [Color.gray.opacity(0.5), Color.gray.opacity(0.4)]
             case .danger:
                 return [Color.red.opacity(0.8), Color.pink.opacity(0.8)]
             case .success:
@@ -34,12 +34,7 @@ struct GlassButton: View {
         }
 
         var foregroundColor: Color {
-            switch self {
-            case .secondary:
-                return .primary
-            default:
-                return .white
-            }
+            return .white
         }
     }
 

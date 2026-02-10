@@ -32,7 +32,7 @@ struct GlassCard<Content: View>: View {
                 RoundedRectangle(cornerRadius: cornerRadius)
                     .stroke(
                         LinearGradient(
-                            colors: [.white.opacity(0.5), .white.opacity(0.1)],
+                            colors: [.primary.opacity(0.2), .primary.opacity(0.05)],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         ),

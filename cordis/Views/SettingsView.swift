@@ -76,8 +76,7 @@ struct SettingsView: View {
             }
             .navigationTitle(String(localized: "settings_title"))
             .navigationBarTitleDisplayMode(.large)
-            .toolbarColorScheme(.dark, for: .navigationBar)
-            .toolbarBackground(.hidden, for: .navigationBar)
+            .toolbarBackground(.ultraThinMaterial, for: .navigationBar)
         }
         .onAppear {
             ensureSettingsExists()

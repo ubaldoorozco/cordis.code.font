@@ -25,8 +25,7 @@ struct GuidedMeditationListView: View {
         }
         .navigationTitle(String(localized: "meditation_title"))
         .navigationBarTitleDisplayMode(.large)
-        .toolbarColorScheme(.dark, for: .navigationBar)
-        .toolbarBackground(.hidden, for: .navigationBar)
+        .toolbarBackground(.ultraThinMaterial, for: .navigationBar)
         .task {
             await cloudKit.fetchMeditations()
         }
@@ -168,7 +167,7 @@ struct GuidedMeditationListView: View {
                 .clipShape(Circle())
 
             VStack(alignment: .leading, spacing: 4) {
-                Text(item.title)
+                Text(item.localizedTitle)
                     .font(.body.bold())
                     .foregroundColor(.white)
                     .lineLimit(1)
@@ -178,10 +177,10 @@ struct GuidedMeditationListView: View {
                         .font(.subheadline)
                         .foregroundColor(.white.opacity(0.6))
 
-                    if !item.description.isEmpty {
+                    if !item.localizedDescription.isEmpty {
                         Text("·")
                             .foregroundColor(.white.opacity(0.4))
-                        Text(item.description)
+                        Text(item.localizedDescription)
                             .font(.subheadline)
                             .foregroundColor(.white.opacity(0.5))
                             .lineLimit(1)

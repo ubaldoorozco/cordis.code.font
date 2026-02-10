@@ -118,14 +118,13 @@ struct PrivacyPolicyView: View {
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
-            .toolbarColorScheme(.dark, for: .navigationBar)
-            .toolbarBackground(.hidden, for: .navigationBar)
+            .toolbarBackground(.ultraThinMaterial, for: .navigationBar)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button(String(localized: "common_done")) {
                         dismiss()
                     }
-                    .foregroundStyle(.white)
+                    .foregroundStyle(.primary)
                 }
             }
         }

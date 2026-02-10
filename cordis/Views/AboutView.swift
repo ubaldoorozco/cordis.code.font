@@ -34,9 +34,6 @@ struct AboutView: View {
                         // Credits
                         creditsSection
 
-                        // Institution
-                        institutionSection
-
                         // Version
                         versionSection
                     }
@@ -45,14 +42,13 @@ struct AboutView: View {
             }
             .navigationTitle(String(localized: "about_title"))
             .navigationBarTitleDisplayMode(.large)
-            .toolbarColorScheme(.dark, for: .navigationBar)
-            .toolbarBackground(.hidden, for: .navigationBar)
+            .toolbarBackground(.ultraThinMaterial, for: .navigationBar)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button(String(localized: "common_done")) {
                         dismiss()
                     }
-                    .foregroundStyle(.white)
+                    .foregroundStyle(.primary)
                 }
             }
         }
@@ -108,7 +104,7 @@ struct AboutView: View {
 
     private var creditsSection: some View {
         GlassCard {
-            VStack(alignment: .leading, spacing: 16) {
+            VStack(alignment: .leading, spacing: 20) {
                 HStack {
                     Image(systemName: "person.2.fill")
                         .foregroundStyle(.purple)
@@ -117,22 +113,49 @@ struct AboutView: View {
                         .foregroundStyle(.white)
                 }
 
-                VStack(alignment: .leading, spacing: 12) {
-                    creditRow(
-                        name: "Christian Arzaluz",
-                        role: String(localized: "about_developed_by")
-                    )
+                creditGroup(
+                    title: String(localized: "credits_development"),
+                    icon: "chevron.left.forwardslash.chevron.right",
+                    names: ["Christian Arzaluz", "Ubaldo Orozco", "Santiago Aragoneses", "Hansel Ortega", "Patricio Aguilar", "Miguel Roldán"]
+                )
 
-                    creditRow(
-                        name: "Ubaldo Orozco Camargo",
-                        role: String(localized: "about_developed_by")
-                    )
-                }
+                Divider().overlay(.white.opacity(0.2))
+
+                creditGroup(
+                    title: String(localized: "credits_guided_meditations"),
+                    icon: "headphones",
+                    names: ["Janet Castillo", "Sarahí Serrano", "Isabel Alondra Castro"]
+                )
+
+                Divider().overlay(.white.opacity(0.2))
+
+                creditGroup(
+                    title: "Colegio Walden Dos de México",
+                    icon: "building.columns.fill",
+                    names: ["Eduardo García", String(localized: "credits_placeholder")]
+                )
             }
         }
     }
 
-    private func creditRow(name: String, role: String) -> some View {
+    private func creditGroup(title: String, icon: String, names: [String]) -> some View {
+        VStack(alignment: .leading, spacing: 10) {
+            HStack(spacing: 8) {
+                Image(systemName: icon)
+                    .foregroundStyle(.purple.opacity(0.8))
+                    .frame(width: 20)
+                Text(title)
+                    .font(.subheadline.weight(.semibold))
+                    .foregroundStyle(.white.opacity(0.8))
+            }
+
+            ForEach(names, id: \.self) { name in
+                creditRow(name: name)
+            }
+        }
+    }
+
+    private func creditRow(name: String) -> some View {
         HStack(spacing: 12) {
             Circle()
                 .fill(
@@ -142,60 +165,16 @@ struct AboutView: View {
                         endPoint: .bottomTrailing
                     )
                 )
-                .frame(width: 40, height: 40)
+                .frame(width: 36, height: 36)
                 .overlay(
                     Text(String(name.prefix(1)))
-                        .font(.headline)
+                        .font(.subheadline.weight(.semibold))
                         .foregroundStyle(.white)
                 )
 
-            VStack(alignment: .leading, spacing: 2) {
-                Text(name)
-                    .font(.body.weight(.medium))
-                    .foregroundStyle(.white)
-
-                Text(role)
-                    .font(.caption)
-                    .foregroundStyle(.white.opacity(0.6))
-            }
-        }
-    }
-
-    // MARK: - Institution Section
-
-    private var institutionSection: some View {
-        GlassCard {
-            VStack(alignment: .leading, spacing: 12) {
-                HStack {
-                    Image(systemName: "building.columns.fill")
-                        .foregroundStyle(.purple)
-                    Text(String(localized: "about_institution"))
-                        .font(.headline)
-                        .foregroundStyle(.white)
-                }
-
-                HStack(spacing: 12) {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 10)
-                            .fill(.white.opacity(0.1))
-                            .frame(width: 50, height: 50)
-
-                        Image(systemName: "graduationcap.fill")
-                            .font(.title2)
-                            .foregroundStyle(.purple)
-                    }
-
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text("Colegio Walden Dos")
-                            .font(.body.weight(.medium))
-                            .foregroundStyle(.white)
-
-                        Text("México")
-                            .font(.caption)
-                            .foregroundStyle(.white.opacity(0.6))
-                    }
-                }
-            }
+            Text(name)
+                .font(.body)
+                .foregroundStyle(.white.opacity(0.9))
         }
     }
 

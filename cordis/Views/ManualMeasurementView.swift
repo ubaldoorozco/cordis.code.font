@@ -94,7 +94,7 @@ struct ManualMeasurementView: View {
         VStack(spacing: 30) {
             Text(String(localized: "manual_tutorial_title"))
                 .font(.title.bold())
-                .foregroundStyle(.white)
+                .foregroundStyle(.primary)
                 .multilineTextAlignment(.center)
 
             WristGuideView()
@@ -131,7 +131,7 @@ struct ManualMeasurementView: View {
 
             Text(text)
                 .font(.subheadline)
-                .foregroundStyle(.white.opacity(0.9))
+                .foregroundStyle(.primary.opacity(0.9))
         }
     }
 
@@ -141,7 +141,7 @@ struct ManualMeasurementView: View {
         VStack(spacing: 30) {
             Text(String(localized: "manual_timer_title"))
                 .font(.title.bold())
-                .foregroundStyle(.white)
+                .foregroundStyle(.primary)
 
             CountdownTimerView(totalSeconds: 15) {
                 withAnimation {
@@ -158,12 +158,12 @@ struct ManualMeasurementView: View {
         VStack(spacing: 30) {
             Text(String(localized: "manual_input_title"))
                 .font(.title.bold())
-                .foregroundStyle(.white)
+                .foregroundStyle(.primary)
                 .multilineTextAlignment(.center)
 
             Text(String(localized: "manual_input_subtitle"))
                 .font(.subheadline)
-                .foregroundStyle(.white.opacity(0.7))
+                .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
 
             // Beat counter
@@ -276,7 +276,7 @@ struct ManualMeasurementView: View {
 
                     Text(String(localized: "manual_result_saved"))
                         .font(.title.bold())
-                        .foregroundStyle(.white)
+                        .foregroundStyle(.primary)
 
                     // BPM Display
                     GlassCard {

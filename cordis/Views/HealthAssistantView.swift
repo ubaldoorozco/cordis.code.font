@@ -44,7 +44,7 @@ struct HealthAssistantView: View {
         NavigationStack {
             VStack(spacing: 10) {
 
-                ScrollView {
+                ScrollView(.vertical, showsIndicators: true) {
                     VStack(alignment: .leading, spacing: 12) {
 
                         summaryCard(context)
@@ -53,6 +53,7 @@ struct HealthAssistantView: View {
                             Text(String(localized: "assistant_detected \(detected)"))
                                 .font(.footnote)
                                 .foregroundColor(.secondary)
+                                .fixedSize(horizontal: false, vertical: true)
                         }
 
                         if !currentMessages.isEmpty {
@@ -74,10 +75,13 @@ struct HealthAssistantView: View {
                                     HStack(spacing: 10) {
                                         Image(systemName: icon(for: item.category))
                                             .foregroundColor(.secondary)
+                                            .frame(width: 24)
                                         Text(item.question)
                                             .font(.headline)
                                             .foregroundColor(.primary)
-                                        Spacer()
+                                            .multilineTextAlignment(.leading)
+                                            .fixedSize(horizontal: false, vertical: true)
+                                        Spacer(minLength: 4)
                                         Image(systemName: "chevron.right")
                                             .foregroundColor(.secondary)
                                     }
@@ -90,21 +94,21 @@ struct HealthAssistantView: View {
 
                         Spacer(minLength: 16)
                     }
+                    .frame(maxWidth: .infinity, alignment: .leading)
                     .padding()
                 }
+                .scrollBounceBehavior(.basedOnSize)
+                .scrollDismissesKeyboard(.interactively)
             }
             .navigationTitle(String(localized: "assistant_title"))
-            .toolbarColorScheme(.dark, for: .navigationBar)
-            .toolbarBackground(.hidden, for: .navigationBar)
+            .toolbarBackground(.ultraThinMaterial, for: .navigationBar)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button(String(localized: "common_close")) { dismiss() }
-                        .foregroundStyle(.white)
                 }
                 ToolbarItem(placement: .topBarTrailing) {
                     if !currentMessages.isEmpty {
                         Button(String(localized: "assistant_clear")) { clearChat() }
-                            .foregroundStyle(.white)
                     }
                 }
             }
@@ -138,10 +142,12 @@ struct HealthAssistantView: View {
 
     private func summaryCard(_ c: AssistContext) -> some View {
         VStack(alignment: .leading, spacing: 6) {
-            Text("Resumen").font(.headline)
-            Text("Último: \(c.lastBPMText) • 7 días: \(c.avg7Text) • Racha: \(c.streakDays) días")
+            Text(String(localized: "assistant_summary")).font(.headline)
+            Text(String(localized: "assistant_summary_detail \(c.lastBPMText) \(c.avg7Text) \(c.streakDays)"))
                 .foregroundColor(.secondary)
+                .fixedSize(horizontal: false, vertical: true)
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
         .padding()
         .background(.thinMaterial)
         .clipShape(RoundedRectangle(cornerRadius: 14))
@@ -240,462 +246,206 @@ struct FAQItem: Identifiable {
         [
             // ===== 30 originales =====
 
-            FAQItem(category: .bajar, question: "¿Cómo bajo mi ritmo ahora?", keywords: ["bajar","ritmo","bpm","calmar","ansiedad","estres","nervioso"], answer: { c in
-                """
-                \(userName), tus datos:
-                • Último: \(c.lastBPMText)
-                • Promedio 7 días: \(c.avg7Text)
-
-                Para bajarlo ahora (2–3 min):
-                • Inhala 4s, exhala 6–8s (6 veces)
-                • Toma agua
-                • Baja estímulos 5–10 min
-                """
+            FAQItem(category: .bajar, question: String(localized: "faq_q_01"), keywords: ["bajar","ritmo","bpm","calmar","ansiedad","estres","nervioso"], answer: { c in
+                String(localized: "faq_a_01 \(userName) \(c.lastBPMText) \(c.avg7Text)")
             }),
 
-            FAQItem(category: .bajar, question: "Me siento acelerado, ¿qué hago?", keywords: ["acelerado","rapido","rápido","latidos","ansiedad"], answer: { _ in
-                """
-                Haz una pausa:
-                • Siéntate recto
-                • Exhala lento (más largo que inhalar)
-                • 6 ciclos de 4s / 6–8s
-                • Agua y descansa 5 min
-                """
+            FAQItem(category: .bajar, question: String(localized: "faq_q_02"), keywords: ["acelerado","rapido","rápido","latidos","ansiedad"], answer: { _ in
+                String(localized: "faq_a_02")
             }),
 
-            FAQItem(category: .bajar, question: "¿Cómo me relajo rápido?", keywords: ["relajar","calmar","estres","ansiedad"], answer: { _ in
-                """
-                Rápido:
-                • Inhala 4s
-                • Exhala 6–8s
-                • Repite 1 minuto
-                Después: agua y pausa sin pantalla 5 min.
-                """
+            FAQItem(category: .bajar, question: String(localized: "faq_q_03"), keywords: ["relajar","calmar","estres","ansiedad"], answer: { _ in
+                String(localized: "faq_a_03")
             }),
 
-            FAQItem(category: .bajar, question: "¿Qué hago si estoy enojado y mi ritmo sube?", keywords: ["enojado","coraje","molesto","alteré","altere"], answer: { _ in
-                """
-                Cuando te enojas, el cuerpo se prende.
-                • Exhala lento 10 veces
-                • Suelta hombros y mandíbula
-                • Aléjate 2 minutos de la situación
-                """
+            FAQItem(category: .bajar, question: String(localized: "faq_q_04"), keywords: ["enojado","coraje","molesto","alteré","altere"], answer: { _ in
+                String(localized: "faq_a_04")
             }),
 
-            FAQItem(category: .bajar, question: "¿Qué hago si siento nervios todo el día?", keywords: ["nervios","todo el dia","todo el día","ansiedad","estresado"], answer: { _ in
-                """
-                Mini plan del día:
-                • 3 pausas de respiración (1 min cada una)
-                • 10 min caminata suave
-                • Menos pantallas en la tarde
-                • Dormir a la misma hora
-                """
+            FAQItem(category: .bajar, question: String(localized: "faq_q_05"), keywords: ["nervios","todo el dia","todo el día","ansiedad","estresado"], answer: { _ in
+                String(localized: "faq_a_05")
             }),
 
-            FAQItem(category: .examen, question: "Estoy nervioso por un examen", keywords: ["examen","escuela","tarea","presentación","presentacion","nervioso"], answer: { _ in
-                """
-                Plan rápido (2–3 min):
-                • 6 respiraciones lentas (4s / 6–8s)
-                • Relaja hombros y mandíbula
-                • Enfócate en la primera pregunta y avanza paso a paso
-                """
+            FAQItem(category: .examen, question: String(localized: "faq_q_06"), keywords: ["examen","escuela","tarea","presentación","presentacion","nervioso"], answer: { _ in
+                String(localized: "faq_a_06")
             }),
 
-            FAQItem(category: .examen, question: "Me da miedo fallar en un examen", keywords: ["miedo","fallar","reprobar","pánico","panico","examen"], answer: { _ in
-                """
-                Truco mental:
-                • “Solo hago el siguiente paso”
-                • Respira 6 veces lento
-                • Empieza por la pregunta más fácil
-                """
+            FAQItem(category: .examen, question: String(localized: "faq_q_07"), keywords: ["miedo","fallar","reprobar","pánico","panico","examen"], answer: { _ in
+                String(localized: "faq_a_07")
             }),
 
-            FAQItem(category: .examen, question: "No puedo concentrarme estudiando", keywords: ["concentrarme","concentración","concentracion","distra","estudiar"], answer: { _ in
-                """
-                Método rápido:
-                • 10 min enfoque (sin celular)
-                • 2 min descanso
-                • Repite 3 veces
-                """
+            FAQItem(category: .examen, question: String(localized: "faq_q_08"), keywords: ["concentrarme","concentración","concentracion","distra","estudiar"], answer: { _ in
+                String(localized: "faq_a_08")
             }),
 
-            FAQItem(category: .examen, question: "Me siento presionado por la escuela", keywords: ["presión","presion","escuela","tareas","estrés escolar","estres escolar"], answer: { _ in
-                """
-                Baja la presión en pasos:
-                • Escribe 3 tareas (solo 3)
-                • Empieza por la más corta
-                • Descanso 2 min cada 10–15 min
-                """
+            FAQItem(category: .examen, question: String(localized: "faq_q_09"), keywords: ["presión","presion","escuela","tareas","estrés escolar","estres escolar"], answer: { _ in
+                String(localized: "faq_a_09")
             }),
 
-            FAQItem(category: .sueno, question: "No dormí bien", keywords: ["dormí","dormi","sueño","cansado","desvelado"], answer: { _ in
-                """
-                Hoy:
-                • Evita cafeína si te acelera
-                • Toma agua
-                • Siesta corta 15–25 min si puedes
-                • Duerme más temprano
-                """
+            FAQItem(category: .sueno, question: String(localized: "faq_q_10"), keywords: ["dormí","dormi","sueño","cansado","desvelado"], answer: { _ in
+                String(localized: "faq_a_10")
             }),
 
-            FAQItem(category: .sueno, question: "¿Qué hago antes de dormir para descansar mejor?", keywords: ["antes de dormir","dormir","noche","descansar"], answer: { _ in
-                """
-                Antes de dormir:
-                • Apaga pantallas 30 min antes
-                • Luz baja
-                • Respiración lenta 2 min
-                • Estiramiento suave 1 min
-                """
+            FAQItem(category: .sueno, question: String(localized: "faq_q_11"), keywords: ["antes de dormir","dormir","noche","descansar"], answer: { _ in
+                String(localized: "faq_a_11")
             }),
 
-            FAQItem(category: .sueno, question: "Me despierto en la noche", keywords: ["me despierto","madrugada","no duermo","despierto"], answer: { _ in
-                """
-                Si te despiertas:
-                • No agarres el celular
-                • Respira lento 1 minuto
-                • Vuelve a acostarte cómodo
-                """
+            FAQItem(category: .sueno, question: String(localized: "faq_q_12"), keywords: ["me despierto","madrugada","no duermo","despierto"], answer: { _ in
+                String(localized: "faq_a_12")
             }),
 
-            FAQItem(category: .sueno, question: "Tengo sueño en el día", keywords: ["sueño en el día","sueño en el dia","me da sueño","cansancio"], answer: { _ in
-                """
-                Para aguantar:
-                • Agua
-                • Caminar 5–10 min
-                • Luz natural
-                • Siesta 15–20 min si puedes
-                """
+            FAQItem(category: .sueno, question: String(localized: "faq_q_13"), keywords: ["sueño en el día","sueño en el dia","me da sueño","cansancio"], answer: { _ in
+                String(localized: "faq_a_13")
             }),
 
-            FAQItem(category: .cafeina, question: "Tomé café y me siento acelerado", keywords: ["café","cafe","cafeína","cafeina","energética","energetica"], answer: { _ in
-                """
-                La cafeína puede subir el ritmo.
-                • No tomes más hoy
-                • Agua + respiración lenta 2–3 min
-                • Descansa sin pantallas
-                """
+            FAQItem(category: .cafeina, question: String(localized: "faq_q_14"), keywords: ["café","cafe","cafeína","cafeina","energética","energetica"], answer: { _ in
+                String(localized: "faq_a_14")
             }),
 
-            FAQItem(category: .cafeina, question: "¿Cuánta cafeína debería tomar?", keywords: ["cuanta","cuánta","cafeína","cafeina","cuánto café","cuanto cafe"], answer: { _ in
-                """
-                Depende de tu cuerpo.
-                Si te acelera:
-                • Toma menos
-                • Evita en la tarde/noche
-                • Cambia por agua
-                """
+            FAQItem(category: .cafeina, question: String(localized: "faq_q_15"), keywords: ["cuanta","cuánta","cafeína","cafeina","cuánto café","cuanto cafe"], answer: { _ in
+                String(localized: "faq_a_15")
             }),
 
-            FAQItem(category: .cafeina, question: "Tomé energética, ¿qué hago?", keywords: ["energética","energetica","monster","red bull","bebida energética"], answer: { _ in
-                """
-                Haz esto:
-                • No tomes otra
-                • Agua
-                • Respiración lenta 2–3 min
-                • Baja estímulos
-                """
+            FAQItem(category: .cafeina, question: String(localized: "faq_q_16"), keywords: ["energética","energetica","monster","red bull","bebida energética"], answer: { _ in
+                String(localized: "faq_a_16")
             }),
 
-            FAQItem(category: .ejercicio, question: "Vengo de ejercicio", keywords: ["ejercicio","gym","corrí","corri","entrené","entrene","caminé","camine"], answer: { _ in
-                """
-                Si venías de ejercicio es normal.
-                • Camina suave 3–5 min
-                • Respira lento (exhala más largo)
-                • Hidrátate
-                """
+            FAQItem(category: .ejercicio, question: String(localized: "faq_q_17"), keywords: ["ejercicio","gym","corrí","corri","entrené","entrene","caminé","camine"], answer: { _ in
+                String(localized: "faq_a_17")
             }),
 
-            FAQItem(category: .ejercicio, question: "¿Está bien hacer ejercicio si estoy estresado?", keywords: ["ejercicio","estresado","estresada","ansiedad"], answer: { _ in
-                """
-                Sí, pero suave:
-                • Caminata 10–20 min
-                • Estiramiento
-                • Evita intensidad alta si ya estás acelerado
-                """
+            FAQItem(category: .ejercicio, question: String(localized: "faq_q_18"), keywords: ["ejercicio","estresado","estresada","ansiedad"], answer: { _ in
+                String(localized: "faq_a_18")
             }),
 
-            FAQItem(category: .ejercicio, question: "Me falta aire después de correr", keywords: ["me falta aire","correr","agotado","agotada","corrí","corri"], answer: { _ in
-                """
-                Baja el ritmo:
-                • Camina suave
-                • Respira lento
-                • Agua
-                Si no mejora, pide ayuda a un adulto.
-                """
+            FAQItem(category: .ejercicio, question: String(localized: "faq_q_19"), keywords: ["me falta aire","correr","agotado","agotada","corrí","corri"], answer: { _ in
+                String(localized: "faq_a_19")
             }),
 
-            FAQItem(category: .promedio, question: "¿Cómo va mi promedio?", keywords: ["promedio","media","estadísticas","estadisticas","tendencia"], answer: { c in
-                """
-                Tu promedio 7 días: \(c.avg7Text)
-                Lo importante es ver patrones.
-                Si sube varios días: revisa sueño, cafeína, agua y respiración.
-                """
+            FAQItem(category: .promedio, question: String(localized: "faq_q_20"), keywords: ["promedio","media","estadísticas","estadisticas","tendencia"], answer: { c in
+                String(localized: "faq_a_20 \(c.avg7Text)")
             }),
 
-            FAQItem(category: .promedio, question: "¿Por qué mi promedio subió esta semana?", keywords: ["subió","subio","esta semana","promedio"], answer: { _ in
-                """
-                Cosas comunes:
-                • dormir poco
-                • más cafeína
-                • más estrés
-                • menos agua
-                Revisa qué cambió esta semana.
-                """
+            FAQItem(category: .promedio, question: String(localized: "faq_q_21"), keywords: ["subió","subio","esta semana","promedio"], answer: { _ in
+                String(localized: "faq_a_21")
             }),
 
-            FAQItem(category: .promedio, question: "¿Qué significa Bajo / Medio / Alto?", keywords: ["bajo","medio","alto","significa","clasificación","clasificacion"], answer: { _ in
-                """
-                Es una guía simple:
-                • Bajo: debajo de lo esperado
-                • Medio: dentro del rango esperado
-                • Alto: arriba de lo esperado
-                Lo ideal es ver patrones, no un solo registro.
-                """
+            FAQItem(category: .promedio, question: String(localized: "faq_q_22"), keywords: ["bajo","medio","alto","significa","clasificación","clasificacion"], answer: { _ in
+                String(localized: "faq_a_22")
             }),
 
-            FAQItem(category: .racha, question: "¿Cómo subo mi racha?", keywords: ["racha","constancia","diario","días seguidos","dias seguidos"], answer: { c in
-                """
-                Tu racha: \(c.streakDays) días.
-                • Mide 1 vez al día a la misma hora
-                • Pon un recordatorio
-                • Consistencia > perfección
-                """
+            FAQItem(category: .racha, question: String(localized: "faq_q_23"), keywords: ["racha","constancia","diario","días seguidos","dias seguidos"], answer: { c in
+                String(localized: "faq_a_23 \(c.streakDays)")
             }),
 
-            FAQItem(category: .racha, question: "Se me olvidó un día, ¿perdí mi racha?", keywords: ["olvid","perdí","perdi","racha","un día","un dia"], answer: { _ in
-                """
-                A veces pasa.
-                • Retoma hoy
-                • Pon recordatorio
-                • Lo importante es volver
-                """
+            FAQItem(category: .racha, question: String(localized: "faq_q_24"), keywords: ["olvid","perdí","perdi","racha","un día","un dia"], answer: { _ in
+                String(localized: "faq_a_24")
             }),
 
-            FAQItem(category: .racha, question: "¿A qué hora es mejor medir mi BPM?", keywords: ["hora","cuando","cuándo","medir bpm","mejor medir"], answer: { _ in
-                """
-                Ideal:
-                • Misma hora cada día
-                • En reposo (calmado)
-                Ej: al despertar o antes de dormir.
-                """
+            FAQItem(category: .racha, question: String(localized: "faq_q_25"), keywords: ["hora","cuando","cuándo","medir bpm","mejor medir"], answer: { _ in
+                String(localized: "faq_a_25")
             }),
 
-            FAQItem(category: .general, question: "¿Por qué me siento raro hoy?", keywords: ["raro","extraño","mal","no sé","no se"], answer: { _ in
-                """
-                Puede ser por sueño, estrés, comida, agua o cafeína.
-                Dime:
-                1) ¿Dormiste bien?
-                2) ¿Tomaste cafeína?
-                3) ¿Venías de ejercicio?
-                """
+            FAQItem(category: .general, question: String(localized: "faq_q_26"), keywords: ["raro","extraño","mal","no sé","no se"], answer: { _ in
+                String(localized: "faq_a_26")
             }),
 
-            FAQItem(category: .general, question: "¿Qué hábitos mejoran mi ritmo en general?", keywords: ["hábitos","habitos","mejorar","rutina","salud"], answer: { _ in
-                """
-                Hábitos simples:
-                • Dormir bien
-                • Tomar agua
-                • Caminar 10–20 min
-                • Menos pantallas en la noche
-                • Respiración 2 min al día
-                """
+            FAQItem(category: .general, question: String(localized: "faq_q_27"), keywords: ["hábitos","habitos","mejorar","rutina","salud"], answer: { _ in
+                String(localized: "faq_a_27")
             }),
 
-            FAQItem(category: .general, question: "¿Qué hago si me estreso por redes sociales?", keywords: ["redes","tiktok","instagram","celular","pantalla","notificaciones"], answer: { _ in
-                """
-                Prueba:
-                • Pausa 10 min sin notificaciones
-                • Agua
-                • Respiración lenta 1–2 min
-                • Vuelve y limita el tiempo
-                """
+            FAQItem(category: .general, question: String(localized: "faq_q_28"), keywords: ["redes","tiktok","instagram","celular","pantalla","notificaciones"], answer: { _ in
+                String(localized: "faq_a_28")
             }),
 
-            FAQItem(category: .general, question: "¿Qué hago si no sé qué me pasa?", keywords: ["confundido","confundida","qué hago","que hago","no sé","no se"], answer: { _ in
-                """
-                Vamos en orden:
-                1) Respira lento 1 minuto
-                2) Toma agua
-                3) Siéntate 2 minutos
-                """
+            FAQItem(category: .general, question: String(localized: "faq_q_29"), keywords: ["confundido","confundida","qué hago","que hago","no sé","no se"], answer: { _ in
+                String(localized: "faq_a_29")
             }),
 
-            FAQItem(category: .general, question: "Dame un consejo para hoy", keywords: ["consejo","hoy","ayuda","recomendación","recomendacion"], answer: { c in
-                """
-                Consejo de hoy:
-                • 10 min caminata suave
-                • 2 vasos de agua extra
-                • 1 minuto de respiración lenta
-
-                Tus datos: último \(c.lastBPMText) • 7 días \(c.avg7Text).
-                """
+            FAQItem(category: .general, question: String(localized: "faq_q_30"), keywords: ["consejo","hoy","ayuda","recomendación","recomendacion"], answer: { c in
+                String(localized: "faq_a_30 \(c.lastBPMText) \(c.avg7Text)")
             }),
 
             // ===== 20 nuevas (extras) =====
 
-            FAQItem(category: .bajar, question: "Siento mi corazón rápido al despertar", keywords: ["despertar","mañana","rapido","rápido","corazon","corazón"], answer: { _ in
-                """
-                Al despertar puede pasar por estrés, poco sueño o cafeína del día anterior.
-                • Respira lento 1 minuto (exhala más largo)
-                • Toma agua
-                • Muévete suave 2–3 min
-                """
+            FAQItem(category: .bajar, question: String(localized: "faq_q_31"), keywords: ["despertar","mañana","rapido","rápido","corazon","corazón"], answer: { _ in
+                String(localized: "faq_a_31")
             }),
 
-            FAQItem(category: .bajar, question: "Estoy muy estresado, ¿qué hago primero?", keywords: ["muy","estresado","estresada","primero","ansiedad"], answer: { _ in
-                """
-                Primero baja el modo alarma:
-                1) Exhala lento 10 veces
-                2) Toma agua
-                3) Siéntate 2 minutos sin pantalla
-                """
+            FAQItem(category: .bajar, question: String(localized: "faq_q_32"), keywords: ["muy","estresado","estresada","primero","ansiedad"], answer: { _ in
+                String(localized: "faq_a_32")
             }),
 
-            FAQItem(category: .bajar, question: "Me siento tenso (hombros/cuello)", keywords: ["tenso","tension","hombros","cuello","mandíbula","mandibula"], answer: { _ in
-                """
-                • Hombros arriba 3s y suelta (x5)
-                • Afloja mandíbula
-                • 6 respiraciones lentas
-                """
+            FAQItem(category: .bajar, question: String(localized: "faq_q_33"), keywords: ["tenso","tension","hombros","cuello","mandíbula","mandibula"], answer: { _ in
+                String(localized: "faq_a_33")
             }),
 
-            FAQItem(category: .bajar, question: "Me altero cuando tengo mucha tarea", keywords: ["tarea","tareas","mucho","altero","estres"], answer: { _ in
-                """
-                • Elige 1 tarea pequeña y empieza 5 minutos
-                • Descansa 2 minutos
-                • Repite
-                """
+            FAQItem(category: .bajar, question: String(localized: "faq_q_34"), keywords: ["tarea","tareas","mucho","altero","estres"], answer: { _ in
+                String(localized: "faq_a_34")
             }),
 
-            FAQItem(category: .examen, question: "¿Qué hago si me quedo en blanco en el examen?", keywords: ["blanco","me quedo en blanco","examen","mente"], answer: { _ in
-                """
-                • Respira 3 veces lento
-                • Lee la pregunta despacio
-                • Empieza por lo más fácil
-                """
+            FAQItem(category: .examen, question: String(localized: "faq_q_35"), keywords: ["blanco","me quedo en blanco","examen","mente"], answer: { _ in
+                String(localized: "faq_a_35")
             }),
 
-            FAQItem(category: .examen, question: "Estoy nervioso antes de exponer", keywords: ["exponer","exposición","exposicion","presentación","presentacion","nervioso"], answer: { _ in
-                """
-                • 6 respiraciones lentas
-                • Suelta hombros
-                • Habla más lento de lo normal
-                """
+            FAQItem(category: .examen, question: String(localized: "faq_q_36"), keywords: ["exponer","exposición","exposicion","presentación","presentacion","nervioso"], answer: { _ in
+                String(localized: "faq_a_36")
             }),
 
-            FAQItem(category: .examen, question: "¿Cómo estudio sin distraerme con el celular?", keywords: ["celular","distraer","distraigo","estudiar","tiktok","instagram"], answer: { _ in
-                """
-                • Celular lejos
-                • 10 min estudio / 2 min descanso
-                • En el descanso: agua, no redes
-                """
+            FAQItem(category: .examen, question: String(localized: "faq_q_37"), keywords: ["celular","distraer","distraigo","estudiar","tiktok","instagram"], answer: { _ in
+                String(localized: "faq_a_37")
             }),
 
-            FAQItem(category: .sueno, question: "Tengo sueño pero no me puedo dormir", keywords: ["no me puedo dormir","insomnio","sueño","noche","dormir"], answer: { _ in
-                """
-                • Apaga pantalla
-                • Respira lento 2 min
-                • Relaja cuerpo (mandíbula/hombros)
-                """
+            FAQItem(category: .sueno, question: String(localized: "faq_q_38"), keywords: ["no me puedo dormir","insomnio","sueño","noche","dormir"], answer: { _ in
+                String(localized: "faq_a_38")
             }),
 
-            FAQItem(category: .sueno, question: "¿Qué hago si dormí tarde y hoy tengo escuela?", keywords: ["dormi tarde","dormí tarde","escuela","cansado","mañana"], answer: { _ in
-                """
-                • Agua y luz natural
-                • Comida ligera
-                • Siesta 15–20 min si puedes
-                • Hoy duerme más temprano
-                """
+            FAQItem(category: .sueno, question: String(localized: "faq_q_39"), keywords: ["dormi tarde","dormí tarde","escuela","cansado","mañana"], answer: { _ in
+                String(localized: "faq_a_39")
             }),
 
-            FAQItem(category: .sueno, question: "Me duermo en clase", keywords: ["clase","me duermo","sueño","cansancio"], answer: { _ in
-                """
-                • Agua
-                • Respira profundo 5 veces
-                • Estira espalda/hombros discretamente
-                """
+            FAQItem(category: .sueno, question: String(localized: "faq_q_40"), keywords: ["clase","me duermo","sueño","cansancio"], answer: { _ in
+                String(localized: "faq_a_40")
             }),
 
-            FAQItem(category: .cafeina, question: "Tomé refresco y me siento acelerado", keywords: ["refresco","cola","azucar","azúcar","acelerado"], answer: { _ in
-                """
-                • Agua
-                • Respiración lenta 2 min
-                • Evita más azúcar hoy
-                """
+            FAQItem(category: .cafeina, question: String(localized: "faq_q_41"), keywords: ["refresco","cola","azucar","azúcar","acelerado"], answer: { _ in
+                String(localized: "faq_a_41")
             }),
 
-            FAQItem(category: .cafeina, question: "¿Cuándo debo dejar de tomar café en el día?", keywords: ["cuando","dejar","cafe","café","tarde","noche"], answer: { _ in
-                """
-                Si te afecta el sueño:
-                • Evita cafeína desde la tarde
-                • Mejor agua o algo sin cafeína
-                """
+            FAQItem(category: .cafeina, question: String(localized: "faq_q_42"), keywords: ["cuando","dejar","cafe","café","tarde","noche"], answer: { _ in
+                String(localized: "faq_a_42")
             }),
 
-            FAQItem(category: .ejercicio, question: "¿Qué hago para recuperarme después del ejercicio?", keywords: ["recuperarme","despues","después","ejercicio","gym"], answer: { _ in
-                """
-                • Camina suave 3–5 min
-                • Agua
-                • Respira lento
-                """
+            FAQItem(category: .ejercicio, question: String(localized: "faq_q_43"), keywords: ["recuperarme","despues","después","ejercicio","gym"], answer: { _ in
+                String(localized: "faq_a_43")
             }),
 
-            FAQItem(category: .ejercicio, question: "Me mareé un poco después de hacer ejercicio", keywords: ["maree","mareé","ejercicio","gym","cansado"], answer: { _ in
-                """
-                • Siéntate
-                • Agua
-                • Respira lento
-                Si sigue fuerte, pide ayuda a un adulto.
-                """
+            FAQItem(category: .ejercicio, question: String(localized: "faq_q_44"), keywords: ["maree","mareé","ejercicio","gym","cansado"], answer: { _ in
+                String(localized: "faq_a_44")
             }),
 
-            FAQItem(category: .promedio, question: "¿Cómo sé si estoy mejorando?", keywords: ["mejorando","mejorar","progreso","avance","tendencia"], answer: { c in
-                """
-                Señales:
-                • Promedio 7 días baja o se mantiene estable
-                • Te sientes más calmado
-                Hoy: \(c.avg7Text).
-                """
+            FAQItem(category: .promedio, question: String(localized: "faq_q_45"), keywords: ["mejorando","mejorar","progreso","avance","tendencia"], answer: { c in
+                String(localized: "faq_a_45 \(c.avg7Text)")
             }),
 
-            FAQItem(category: .promedio, question: "¿Por qué un día salió alto y otro día bajo?", keywords: ["un día","un dia","alto","bajo","cambia","variación","variacion"], answer: { _ in
-                """
-                Es normal por:
-                • Sueño, cafeína, estrés o ejercicio
-                Lo importante es el patrón de varios días.
-                """
+            FAQItem(category: .promedio, question: String(localized: "faq_q_46"), keywords: ["un día","un dia","alto","bajo","cambia","variación","variacion"], answer: { _ in
+                String(localized: "faq_a_46")
             }),
 
-            FAQItem(category: .racha, question: "¿Para qué sirve la racha?", keywords: ["para que","para qué","sirve","racha","constancia"], answer: { _ in
-                """
-                La racha te ayuda a ser constante para ver patrones reales.
-                """
+            FAQItem(category: .racha, question: String(localized: "faq_q_47"), keywords: ["para que","para qué","sirve","racha","constancia"], answer: { _ in
+                String(localized: "faq_a_47")
             }),
 
-            FAQItem(category: .racha, question: "¿Qué hago si se me olvida medir?", keywords: ["olvida","olvido","se me olvida","medir","racha"], answer: { _ in
-                """
-                • Pon recordatorio
-                • Elige una hora fija
-                • Únelo a un hábito (dientes / antes de dormir)
-                """
+            FAQItem(category: .racha, question: String(localized: "faq_q_48"), keywords: ["olvida","olvido","se me olvida","medir","racha"], answer: { _ in
+                String(localized: "faq_a_48")
             }),
 
-            FAQItem(category: .general, question: "¿Qué puedo hacer hoy para sentirme mejor?", keywords: ["hoy","sentirme mejor","mejor","bienestar"], answer: { _ in
-                """
-                • Agua
-                • 10 min caminata
-                • 2 min respiración lenta
-                • Menos pantalla en la tarde
-                """
+            FAQItem(category: .general, question: String(localized: "faq_q_49"), keywords: ["hoy","sentirme mejor","mejor","bienestar"], answer: { _ in
+                String(localized: "faq_a_49")
             }),
 
-            FAQItem(category: .general, question: "Dame un plan rápido de 3 minutos", keywords: ["plan","3 minutos","tres minutos","rápido","rapido"], answer: { _ in
-                """
-                Plan 3 min:
-                1) Respira lento 1 min
-                2) Estira hombros/cuello 1 min
-                3) Agua + pausa sin pantalla 1 min
-                """
+            FAQItem(category: .general, question: String(localized: "faq_q_50"), keywords: ["plan","3 minutos","tres minutos","rápido","rapido"], answer: { _ in
+                String(localized: "faq_a_50")
             }),
         ]
     }

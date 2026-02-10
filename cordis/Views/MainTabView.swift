@@ -14,7 +14,7 @@ struct MainTabView: View {
 
     var body: some View {
         TabView(selection: $selectedTab) {
-            HomeView()
+            HomeView(selectedTab: $selectedTab)
                 .tabItem {
                     Label(String(localized: "tab_home"), systemImage: "house.fill")
                 }
@@ -26,7 +26,7 @@ struct MainTabView: View {
                 }
                 .tag(1)
 
-            StatsView()
+            StatsView(selectedTab: $selectedTab)
                 .tabItem {
                     Label(String(localized: "tab_stats"), systemImage: "chart.line.uptrend.xyaxis")
                 }
@@ -35,8 +35,7 @@ struct MainTabView: View {
             NavigationStack {
                 GuidedMeditationListView()
             }
-            .toolbarColorScheme(.dark, for: .navigationBar)
-            .toolbarBackground(.hidden, for: .navigationBar)
+            .toolbarBackground(.ultraThinMaterial, for: .navigationBar)
             .tabItem {
                 Label(String(localized: "tab_meditation"), systemImage: "headphones")
             }

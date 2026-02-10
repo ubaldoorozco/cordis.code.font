@@ -36,7 +36,7 @@ struct GuidedMeditationPlayerView: View {
             .padding(.horizontal, 30)
         }
         .navigationBarTitleDisplayMode(.inline)
-        .toolbarColorScheme(.dark, for: .navigationBar)
+        .toolbarBackground(.ultraThinMaterial, for: .navigationBar)
         .task {
             await prepareAudio()
         }
@@ -65,13 +65,13 @@ struct GuidedMeditationPlayerView: View {
 
     private var titleSection: some View {
         VStack(spacing: 8) {
-            Text(item.title)
+            Text(item.localizedTitle)
                 .font(.title.bold())
                 .foregroundColor(.white)
                 .multilineTextAlignment(.center)
 
-            if !item.description.isEmpty {
-                Text(item.description)
+            if !item.localizedDescription.isEmpty {
+                Text(item.localizedDescription)
                     .font(.subheadline)
                     .foregroundColor(.white.opacity(0.6))
                     .multilineTextAlignment(.center)
@@ -246,7 +246,7 @@ struct GuidedMeditationPlayerView: View {
             isDownloading = false
         } else {
             isDownloading = false
-            downloadError = "No se pudo descargar el audio"
+            downloadError = String(localized: "meditation_download_error")
         }
     }
 

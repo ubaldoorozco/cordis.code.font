@@ -9,6 +9,7 @@ import SwiftUI
 
 struct AnimatedGlassBackground: View {
     var colorScheme: BackgroundColorScheme
+    @Environment(\.colorScheme) private var systemColorScheme
     @State private var animateOrbs = false
 
     enum BackgroundColorScheme {
@@ -17,7 +18,35 @@ struct AnimatedGlassBackground: View {
         case success    // Green/Teal - excellent
         case neutral    // Gray/Blue - neutral state
 
-        var colors: [Color] {
+        func colors(for appearance: ColorScheme) -> [Color] {
+            if appearance == .light {
+                switch self {
+                case .calm:
+                    return [
+                        Color(red: 0.75, green: 0.65, blue: 0.92),
+                        Color(red: 0.68, green: 0.7, blue: 0.95),
+                        Color(red: 0.62, green: 0.75, blue: 0.97)
+                    ]
+                case .stress:
+                    return [
+                        Color(red: 0.95, green: 0.65, blue: 0.68),
+                        Color(red: 0.97, green: 0.7, blue: 0.72),
+                        Color(red: 0.92, green: 0.62, blue: 0.78)
+                    ]
+                case .success:
+                    return [
+                        Color(red: 0.6, green: 0.88, blue: 0.82),
+                        Color(red: 0.65, green: 0.9, blue: 0.85),
+                        Color(red: 0.6, green: 0.82, blue: 0.92)
+                    ]
+                case .neutral:
+                    return [
+                        Color(red: 0.78, green: 0.78, blue: 0.84),
+                        Color(red: 0.82, green: 0.82, blue: 0.88),
+                        Color(red: 0.78, green: 0.82, blue: 0.88)
+                    ]
+                }
+            }
             switch self {
             case .calm:
                 return [
@@ -46,7 +75,19 @@ struct AnimatedGlassBackground: View {
             }
         }
 
-        var orbColors: [Color] {
+        func orbColors(for appearance: ColorScheme) -> [Color] {
+            if appearance == .light {
+                switch self {
+                case .calm:
+                    return [.purple.opacity(0.3), .indigo.opacity(0.25), .blue.opacity(0.2)]
+                case .stress:
+                    return [.red.opacity(0.3), .orange.opacity(0.25), .pink.opacity(0.2)]
+                case .success:
+                    return [.green.opacity(0.3), .teal.opacity(0.25), .mint.opacity(0.2)]
+                case .neutral:
+                    return [.gray.opacity(0.2), .blue.opacity(0.15), .indigo.opacity(0.15)]
+                }
+            }
             switch self {
             case .calm:
                 return [.purple.opacity(0.6), .indigo.opacity(0.5), .blue.opacity(0.4)]
@@ -69,7 +110,7 @@ struct AnimatedGlassBackground: View {
             ZStack {
                 // Base gradient
                 LinearGradient(
-                    colors: colorScheme.colors,
+                    colors: colorScheme.colors(for: systemColorScheme),
                     startPoint: .topLeading,
                     endPoint: .bottomTrailing
                 )
@@ -77,7 +118,7 @@ struct AnimatedGlassBackground: View {
                 // Animated orbs
                 ForEach(0..<3, id: \.self) { index in
                     Circle()
-                        .fill(colorScheme.orbColors[index])
+                        .fill(colorScheme.orbColors(for: systemColorScheme)[index])
                         .frame(width: orbSize(for: index, in: geometry.size),
                                height: orbSize(for: index, in: geometry.size))
                         .blur(radius: 60 + CGFloat(index * 20))

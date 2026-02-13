@@ -36,9 +36,6 @@
     "72" : {
 
     },
-    "911" : {
-
-    },
     "about_credits" : {
       "localizations" : {
         "en" : {
@@ -218,6 +215,7 @@
       }
     },
     "age_4_7" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -234,6 +232,7 @@
       }
     },
     "age_8_12" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -250,6 +249,7 @@
       }
     },
     "age_13_16" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -265,7 +265,24 @@
         }
       }
     },
+    "age_13_17" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "13–17 years"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "13–17 años"
+          }
+        }
+      }
+    },
     "age_17_21" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -277,6 +294,54 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "17-21 años"
+          }
+        }
+      }
+    },
+    "age_18_35" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "18–35 years"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "18–35 años"
+          }
+        }
+      }
+    },
+    "age_36_59" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "36–59 years"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "36–59 años"
+          }
+        }
+      }
+    },
+    "age_60_99" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "60–99 years"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "60–99 años"
           }
         }
       }
@@ -3126,6 +3191,7 @@
       }
     },
     "medical_emergency" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -3142,6 +3208,7 @@
       }
     },
     "medical_emergency_description" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -5073,6 +5140,7 @@
       }
     },
     "source_aap_description" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -5093,13 +5161,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Leading organization for heart health research and education"
+            "value" : "\"All About Heart Rate (Pulse)\" — reference on normal resting heart rate."
           }
         },
         "es-419" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Organización líder en investigación y educación sobre salud cardíaca"
+            "value" : "«All About Heart Rate (Pulse)» — referencia sobre frecuencia cardíaca normal en reposo."
           }
         }
       }
@@ -5109,13 +5177,29 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "U.S. national public health agency"
+            "value" : "\"Resting Pulse Rate Reference Data\" (NHSR No. 41) — population heart rate data."
           }
         },
         "es-419" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Agencia nacional de salud pública de EE.UU."
+            "value" : "«Resting Pulse Rate Reference Data» (NHSR No. 41) — datos poblacionales de frecuencia cardíaca."
+          }
+        }
+      }
+    },
+    "source_cleveland_description" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"Heart Rate: Normal Rates\" — information on normal heart rate and factors that affect it."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "«Heart Rate: Normal Rates» — información sobre frecuencia cardíaca normal y factores que la afectan."
           }
         }
       }
@@ -5125,13 +5209,45 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nonprofit medical practice and research group"
+            "value" : "\"Heart rate: What's normal?\" — guide on normal heart rate ranges."
           }
         },
         "es-419" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Práctica médica sin fines de lucro y grupo de investigación"
+            "value" : "«Heart rate: What's normal?» — guía sobre rangos normales de frecuencia cardíaca."
+          }
+        }
+      }
+    },
+    "source_ncbi_description" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"Normal Heart Rate by Age\" (Table 1.3b) — heart rate reference data by age."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "«Normal Heart Rate by Age» (Tabla 1.3b) — datos de referencia de frecuencia cardíaca por edad."
+          }
+        }
+      }
+    },
+    "source_pubmed_description" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ostchega Y. et al. (2011) — study on resting pulse rate in the U.S. population."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ostchega Y. et al. (2011) — estudio sobre frecuencia de pulso en reposo en la población de EE. UU."
           }
         }
       }
@@ -5265,6 +5381,7 @@
       }
     },
     "stress_arrhythmia" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -5329,6 +5446,7 @@
       }
     },
     "stress_low" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -5356,6 +5474,38 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Normal"
+          }
+        }
+      }
+    },
+    "stress_very_high" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Very high"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Muy elevado"
+          }
+        }
+      }
+    },
+    "stress_very_low" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Very low"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Muy bajo"
           }
         }
       }
@@ -5632,6 +5782,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Latido cardíaco irregular persistente"
+          }
+        }
+      }
+    },
+    "wrist_guide_attribution" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Image: Lapum et al., Vital Sign Measurement Across the Lifespan, CC BY 4.0"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Imagen: Lapum et al., Vital Sign Measurement Across the Lifespan, CC BY 4.0"
           }
         }
       }

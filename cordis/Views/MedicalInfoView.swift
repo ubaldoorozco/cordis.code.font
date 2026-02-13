@@ -278,34 +278,7 @@ struct MedicalInfoView: View {
                 }
             }
 
-            GlassCard {
-                VStack(alignment: .leading, spacing: 12) {
-                    Label(String(localized: "medical_emergency"), systemImage: "phone.arrow.up.right")
-                        .font(.headline)
-                        .foregroundStyle(.red)
-
-                    Text(String(localized: "medical_emergency_description"))
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
-
-                    HStack {
-                        Spacer()
-                        Link(destination: URL(string: "tel://911")!) {
-                            HStack {
-                                Image(systemName: "phone.fill")
-                                Text("911")
-                            }
-                            .font(.headline)
-                            .foregroundStyle(.white)
-                            .padding()
-                            .background(Color.red)
-                            .clipShape(RoundedRectangle(cornerRadius: 12))
-                        }
-                        Spacer()
-                    }
-                }
-            }
-        }
+}
     }
 
     // MARK: - Sources Section
@@ -376,10 +349,10 @@ struct MedicalInfoView: View {
 
     private var ageRanges: [AgeRange] {
         [
-            AgeRange(age: String(localized: "age_4_7"), bpm: "70-120 BPM", min: 70, max: 120, source: "AHA"),
-            AgeRange(age: String(localized: "age_8_12"), bpm: "65-115 BPM", min: 65, max: 115, source: "AHA"),
-            AgeRange(age: String(localized: "age_13_16"), bpm: "60-110 BPM", min: 60, max: 110, source: "AHA"),
-            AgeRange(age: String(localized: "age_17_21"), bpm: "55-100 BPM", min: 55, max: 100, source: "AHA")
+            AgeRange(age: String(localized: "age_13_17"), bpm: "60-100 BPM", min: 60, max: 100, source: "AHA, Mayo Clinic, CDC/NCHS"),
+            AgeRange(age: String(localized: "age_18_35"), bpm: "60-100 BPM", min: 60, max: 100, source: "AHA, Mayo Clinic, CDC/NCHS"),
+            AgeRange(age: String(localized: "age_36_59"), bpm: "60-100 BPM", min: 60, max: 100, source: "AHA, Mayo Clinic, CDC/NCHS"),
+            AgeRange(age: String(localized: "age_60_99"), bpm: "60-100 BPM", min: 60, max: 100, source: "AHA, Mayo Clinic, CDC/NCHS")
         ]
     }
 
@@ -425,22 +398,32 @@ struct MedicalInfoView: View {
             MedicalSource(
                 name: "American Heart Association (AHA)",
                 description: String(localized: "source_aha_description"),
-                url: "https://heart.org"
-            ),
-            MedicalSource(
-                name: "Centers for Disease Control and Prevention (CDC)",
-                description: String(localized: "source_cdc_description"),
-                url: "https://cdc.gov"
+                url: "https://www.heart.org/en/health-topics/high-blood-pressure/the-facts-about-high-blood-pressure/all-about-heart-rate-pulse"
             ),
             MedicalSource(
                 name: "Mayo Clinic",
                 description: String(localized: "source_mayo_description"),
-                url: "https://mayoclinic.org"
+                url: "https://www.mayoclinic.org/healthy-lifestyle/fitness/expert-answers/heart-rate/faq-20057979"
             ),
             MedicalSource(
-                name: "American Academy of Pediatrics",
-                description: String(localized: "source_aap_description"),
-                url: "https://healthychildren.org"
+                name: "CDC / NCHS",
+                description: String(localized: "source_cdc_description"),
+                url: "https://www.cdc.gov/nchs/data/nhsr/nhsr041.pdf"
+            ),
+            MedicalSource(
+                name: "Cleveland Clinic",
+                description: String(localized: "source_cleveland_description"),
+                url: "https://my.clevelandclinic.org/health/diagnostics/heart-rate"
+            ),
+            MedicalSource(
+                name: "NCBI / NIH",
+                description: String(localized: "source_ncbi_description"),
+                url: "https://www.ncbi.nlm.nih.gov/books/NBK593193/table/ch1survey.T.normal_heart_rate_by_age/"
+            ),
+            MedicalSource(
+                name: "PubMed",
+                description: String(localized: "source_pubmed_description"),
+                url: "https://pubmed.ncbi.nlm.nih.gov/21905522/"
             )
         ]
     }

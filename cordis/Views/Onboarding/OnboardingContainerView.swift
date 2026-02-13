@@ -14,7 +14,7 @@ struct OnboardingContainerView: View {
 
     @State private var currentStep: OnboardingStep = .welcome
     @State private var userName: String = ""
-    @State private var selectedAgeGroup: Int = 2
+    @State private var selectedAgeGroup: Int = 0
     @State private var selectedTheme: Int = 0
     @State private var hasAcceptedDisclaimer: Bool = false
     @State private var healthKitEnabled: Bool = false

@@ -7,8 +7,8 @@
 		<string>audio</string>
 	</array>
 	<key>NSHealthShareUsageDescription</key>
-	<string>CORDIS uses your heart rate data from Apple Health to show you wellness statistics and help you understand your patterns. This data is only stored locally on your device.</string>
+	<string>CORDIS reads your heart rate data from Apple Health to display your latest BPM and track trends over time.</string>
 	<key>NSHealthUpdateUsageDescription</key>
-	<string>CORDIS does not write data to Apple Health.</string>
+	<string>CORDIS can save manual heart rate measurements to Apple Health so all your data stays in one place.</string>
 </dict>
 </plist>

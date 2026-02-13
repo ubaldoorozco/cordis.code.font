@@ -117,7 +117,7 @@ struct AboutView: View {
                 creditGroup(
                     title: String(localized: "credits_development"),
                     icon: "chevron.left.forwardslash.chevron.right",
-                    names: ["Christian Arzaluz", "Ubaldo Orozco", "Santiago Aragoneses", "Hansel Ortega", "Patricio Aguilar", "Miguel Roldán"]
+                    names: ["Christian Daniel Arzaluz Tellez", "Ubaldo Orozco Camargo", "Santiago Aragoneses Arizmendii", "Patricio Aguilar Pacheco", "Miguel Ángel Arturo Roldán García", "Hansel Eduardo Ortega Borgues"]
                 )
 
                 Divider().overlay(.white.opacity(0.2))
@@ -125,7 +125,7 @@ struct AboutView: View {
                 creditGroup(
                     title: String(localized: "credits_guided_meditations"),
                     icon: "headphones",
-                    names: ["Janet Castillo", "Sarahí Serrano", "Isabel Alondra Castro"]
+                    names: ["Janet Castillo Reyes", "Sarahí Serrano García", "Isabel Alondra Castro Terán"]
                 )
 
                 Divider().overlay(.white.opacity(0.2))
@@ -133,7 +133,7 @@ struct AboutView: View {
                 creditGroup(
                     title: "Colegio Walden Dos de México",
                     icon: "building.columns.fill",
-                    names: ["Eduardo Hermosillo", "Eduardo García"]
+                    names: ["Eduardo Hermosillo Fuster"]
                 )
             }
         }

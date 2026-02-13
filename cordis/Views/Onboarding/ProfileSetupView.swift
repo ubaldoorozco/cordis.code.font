@@ -15,10 +15,10 @@ struct ProfileSetupView: View {
     @FocusState private var isNameFocused: Bool
 
     private let ageGroups = [
-        (0, "4-7", String(localized: "age_4_7")),
-        (1, "8-12", String(localized: "age_8_12")),
-        (2, "13-16", String(localized: "age_13_16")),
-        (3, "17-21", String(localized: "age_17_21"))
+        (0, "13-17", String(localized: "age_13_17")),
+        (1, "18-35", String(localized: "age_18_35")),
+        (2, "36-59", String(localized: "age_36_59")),
+        (3, "60-99", String(localized: "age_60_99"))
     ]
 
     var body: some View {

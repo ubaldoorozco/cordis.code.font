@@ -19,7 +19,7 @@ struct SettingsView: View {
     @StateObject private var notifications = NotificationManager.shared
 
     @State private var selectedTheme: Int = 0
-    @State private var selectedAgeGroup: Int = 2
+    @State private var selectedAgeGroup: Int = 0
     @State private var preferredName: String = ""
     @State private var objective: Int = 0
     @State private var reminderEnabled: Bool = false
@@ -279,10 +279,10 @@ struct SettingsView: View {
                     .foregroundStyle(.teal)
 
                 Picker("", selection: $selectedAgeGroup) {
-                    Text(String(localized: "age_4_7")).tag(0)
-                    Text(String(localized: "age_8_12")).tag(1)
-                    Text(String(localized: "age_13_16")).tag(2)
-                    Text(String(localized: "age_17_21")).tag(3)
+                    Text(String(localized: "age_13_17")).tag(0)
+                    Text(String(localized: "age_18_35")).tag(1)
+                    Text(String(localized: "age_36_59")).tag(2)
+                    Text(String(localized: "age_60_99")).tag(3)
                 }
                 .pickerStyle(.segmented)
 

@@ -333,7 +333,7 @@ struct ManualMeasurementView: View {
 
     private var stressLevelText: String {
         // Simplified - would use age group in real implementation
-        if calculatedBPM < 60 { return String(localized: "stress_low") }
+        if calculatedBPM < 60 { return String(localized: "stress_very_low") }
         if calculatedBPM < 80 { return String(localized: "stress_excellent") }
         if calculatedBPM < 100 { return String(localized: "stress_normal") }
         if calculatedBPM < 120 { return String(localized: "stress_elevated") }

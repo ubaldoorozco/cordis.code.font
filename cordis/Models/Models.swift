@@ -17,10 +17,10 @@ final class StressEntry {
     var bpm: Int
     var timestamp: Date
     var stressLevel: String
-    /// 0 = 4–7, 1 = 8–12, 2 = 13–16, 3 = 17–21
+    /// 0 = 13–17, 1 = 18–35, 2 = 36–59, 3 = 60–99
     var ageGroup: Int
 
-    init(bpm: Int, timestamp: Date = .now, ageGroup: Int = 2) {
+    init(bpm: Int, timestamp: Date = .now, ageGroup: Int = 0) {
         self.bpm = bpm
         self.timestamp = timestamp
         self.ageGroup = ageGroup
@@ -28,22 +28,22 @@ final class StressEntry {
     }
 
     static func thresholds(for ageGroup: Int) -> (min: Int, max: Int) {
-        // Rangos aproximados de reposo según AHA (American Heart Association)
-        // para diferentes grupos de edad.
+        // Normal resting heart rate for ages 13+: 60-100 BPM
+        // Sources: AHA, Mayo Clinic, CDC/NCHS (NHSR No. 41), Cleveland Clinic, NCBI
         switch ageGroup {
-        case 0: return (70, 120) // 4–7 años
-        case 1: return (65, 115) // 8–12 años
-        case 2: return (60, 110) // 13–16 años
-        case 3: return (55, 100) // 17–21 años
-        default: return (60, 100) // Adulto general
+        case 0: return (60, 100) // 13–17
+        case 1: return (60, 100) // 18–35
+        case 2: return (60, 100) // 36–59
+        case 3: return (60, 100) // 60–99
+        default: return (60, 100)
         }
     }
 
     static func level(from bpm: Int, ageGroup: Int) -> String {
         let t = thresholds(for: ageGroup)
 
-        if bpm < t.min { return "paro cardiaco" }
-        if bpm > t.max { return "arritmia" } // (así se escribe)
+        if bpm < t.min { return "muy bajo" }
+        if bpm > t.max { return "muy elevado" }
 
         // Dentro de rango: conserva tu “estilo” de etiquetas
         switch bpm {
@@ -86,7 +86,7 @@ final class AppSettings {
     var themeMode: Int
     /// 0 = Español, 1 = Inglés
     var languageMode: Int
-    /// 0 = 4–7, 1 = 8–12, 2 = 13–16, 3 = 17–21
+    /// 0 = 13–17, 1 = 18–35, 2 = 36–59, 3 = 60–99
     var ageGroup: Int
     /// User's preferred name for personalization
     var preferredName: String
@@ -112,7 +112,7 @@ final class AppSettings {
     init(
         themeMode: Int = 0,
         languageMode: Int = 0,
-        ageGroup: Int = 2,
+        ageGroup: Int = 0,
         preferredName: String = "",
         objective: Int = 0,
         reminderEnabled: Bool = false,

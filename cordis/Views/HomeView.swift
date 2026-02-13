@@ -30,7 +30,7 @@ struct HomeView: View {
     @FocusState private var bpmFocused: Bool
 
     private var settings: AppSettings? { settingsArr.first }
-    private var ageGroup: Int { settings?.ageGroup ?? 2 }
+    private var ageGroup: Int { settings?.ageGroup ?? 0 }
     private var healthKitEnabled: Bool { settings?.healthKitEnabled ?? false }
 
     private var ultimo: StressEntry? { entries.first }
@@ -482,8 +482,8 @@ struct HomeView: View {
         case "excelente": return String(localized: "stress_excellent")
         case "normal": return String(localized: "stress_normal")
         case "elevado": return String(localized: "stress_elevated")
-        case "arritmia": return String(localized: "stress_arrhythmia")
-        case "paro cardiaco": return String(localized: "stress_low")
+        case "muy elevado", "arritmia": return String(localized: "stress_very_high")
+        case "muy bajo", "paro cardiaco": return String(localized: "stress_very_low")
         default: return raw
         }
     }

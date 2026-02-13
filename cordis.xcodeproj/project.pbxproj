@@ -393,19 +393,22 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = cordis/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Cordis;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "CORDIS needs access to your heart rate data from Apple Watch to monitor stress levels and provide personalized health insights.";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "CORDIS uses your heart rate data from Apple Health to show you wellness statistics and help you understand your patterns. This data is only stored locally on your device.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "CORDIS does not write data to Apple Health.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "cordis.cardiac.dedididor.la10--ubaldoorozcocamargo";
+				PRODUCT_BUNDLE_IDENTIFIER = com.eduardogarcia.cordis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -429,19 +432,22 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = cordis/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Cordis;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "CORDIS needs access to your heart rate data from Apple Watch to monitor stress levels and provide personalized health insights.";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "CORDIS uses your heart rate data from Apple Health to show you wellness statistics and help you understand your patterns. This data is only stored locally on your device.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "CORDIS does not write data to Apple Health.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "cordis.cardiac.dedididor.la10--ubaldoorozcocamargo";
+				PRODUCT_BUNDLE_IDENTIFIER = com.eduardogarcia.cordis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;

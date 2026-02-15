@@ -5384,23 +5384,6 @@
         }
       }
     },
-    "stress_arrhythmia" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Arrhythmia"
-          }
-        },
-        "es-419" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Arritmia"
-          }
-        }
-      }
-    },
     "stress_elevated" : {
       "localizations" : {
         "en" : {
@@ -5487,13 +5470,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Very high"
+            "value" : "Above range"
           }
         },
         "es-419" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Muy elevado"
+            "value" : "Por encima del rango"
           }
         }
       }
@@ -5503,13 +5486,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Very low"
+            "value" : "Below range"
           }
         },
         "es-419" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Muy bajo"
+            "value" : "Por debajo del rango"
           }
         }
       }

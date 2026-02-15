@@ -210,8 +210,8 @@ struct HistoryView: View {
         case "excelente": return String(localized: "stress_excellent")
         case "normal": return String(localized: "stress_normal")
         case "elevado": return String(localized: "stress_elevated")
-        case "muy elevado", "arritmia": return String(localized: "stress_very_high")
-        case "muy bajo", "paro cardiaco": return String(localized: "stress_very_low")
+        case "muy elevado": return String(localized: "stress_very_high")
+        case "muy bajo": return String(localized: "stress_very_low")
         default: return raw
         }
     }

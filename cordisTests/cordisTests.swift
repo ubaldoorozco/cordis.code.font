@@ -48,16 +48,16 @@ struct StressEntryTests {
 
     // MARK: - Stress Level Tests
 
-    @Test func levelBelowMinimumShowsCardiacArrest() {
+    @Test func levelBelowMinimumShowsVeryLow() {
         // Age group 2: min is 60
         let level = StressEntry.level(from: 50, ageGroup: 2)
-        #expect(level == "paro cardiaco")
+        #expect(level == "muy bajo")
     }
 
-    @Test func levelAboveMaximumShowsArrhythmia() {
+    @Test func levelAboveMaximumShowsVeryHigh() {
         // Age group 2: max is 110
         let level = StressEntry.level(from: 120, ageGroup: 2)
-        #expect(level == "arritmia")
+        #expect(level == "muy elevado")
     }
 
     @Test func levelExcellentInLowRange() {
@@ -279,15 +279,15 @@ struct BoundaryTests {
         #expect(level == "Elevado")
     }
 
-    @Test func oneBelowMinimumIsCardiacArrest() {
-        // One below minimum should be "paro cardiaco"
+    @Test func oneBelowMinimumIsVeryLow() {
+        // One below minimum should be "muy bajo"
         let level = StressEntry.level(from: 59, ageGroup: 2)
-        #expect(level == "paro cardiaco")
+        #expect(level == "muy bajo")
     }
 
-    @Test func oneAboveMaximumIsArrhythmia() {
-        // One above maximum should be "arritmia"
+    @Test func oneAboveMaximumIsVeryHigh() {
+        // One above maximum should be "muy elevado"
         let level = StressEntry.level(from: 111, ageGroup: 2)
-        #expect(level == "arritmia")
+        #expect(level == "muy elevado")
     }
 }

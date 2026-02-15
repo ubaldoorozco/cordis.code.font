@@ -8,7 +8,5 @@
 	</array>
 	<key>NSHealthShareUsageDescription</key>
 	<string>CORDIS reads your heart rate data from Apple Health to display your latest BPM and track trends over time.</string>
-	<key>NSHealthUpdateUsageDescription</key>
-	<string>CORDIS can save manual heart rate measurements to Apple Health so all your data stays in one place.</string>
 </dict>
 </plist>

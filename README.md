@@ -23,7 +23,7 @@
 
 ## About
 
-**CORDIS** is a native iOS app designed to help young people (ages 4-21) monitor their heart rate, understand stress patterns, and develop healthy habits through guided breathing exercises and meditations. Built entirely with **SwiftUI** and Apple's latest frameworks.
+**CORDIS** is a native iOS app designed to help young people (ages 13+) monitor their heart rate, understand stress patterns, and develop healthy habits through guided breathing exercises and meditations. Built entirely with **SwiftUI** and Apple's latest frameworks.
 
 > Developed as part of an iOS Bootcamp at **Colegio Walden Dos de Mexico**.
 
@@ -35,7 +35,7 @@
 - **HealthKit integration** - Read real-time BPM from Apple Watch
 - **Manual input** - Quick BPM entry with validation and shake feedback
 - **Guided measurement** - 3-step process with animated wrist guide and 15-second countdown
-- **Age-appropriate classification** - Stress levels calibrated per age group (4-7, 8-12, 13-16, 17-21)
+- **Age-appropriate classification** - Stress levels calibrated per age group (13-17, 18-35, 36-59, 60-99)
 
 ### Statistics & Insights
 - **Interactive charts** - BPM trends over time with gradient fills (Swift Charts)

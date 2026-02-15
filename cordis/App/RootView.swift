@@ -51,13 +51,7 @@ struct RootView: View {
     }
 
     private func ensureBootstrapData() {
-        if settingsArr.isEmpty {
-            context.insert(AppSettings())
-        }
-        if statsArr.isEmpty {
-            context.insert(UserStats())
-        }
-        do { try context.save() } catch { print("SAVE ERROR (bootstrap):", error) }
+        ScreenshotSeedData.seed(context: context, name: "María")
     }
 }
 

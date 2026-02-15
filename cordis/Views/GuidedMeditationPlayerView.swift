@@ -12,6 +12,8 @@ struct GuidedMeditationPlayerView: View {
     @State private var hapticManager = HapticManager()
     @State private var isDownloading = false
     @State private var downloadError: String?
+    @State private var isSeeking = false
+    @State private var seekFraction: Double = 0
     @Environment(\.dismiss) private var dismiss
     @Environment(\.horizontalSizeClass) private var sizeClass
 
@@ -140,12 +142,16 @@ struct GuidedMeditationPlayerView: View {
 
     // MARK: - Time
 
+    private var displayTime: TimeInterval {
+        isSeeking ? seekFraction * audioEngine.duration : audioEngine.currentTime
+    }
+
     private var timeDisplay: some View {
         HStack {
-            Text(formatTime(audioEngine.currentTime))
+            Text(formatTime(displayTime))
                 .monospacedDigit()
             Spacer()
-            Text("-\(formatTime(max(0, audioEngine.duration - audioEngine.currentTime)))")
+            Text("-\(formatTime(max(0, audioEngine.duration - displayTime)))")
                 .monospacedDigit()
         }
         .font(.subheadline)
@@ -171,21 +177,28 @@ struct GuidedMeditationPlayerView: View {
                     )
                     .frame(width: progressWidth(in: geo.size.width), height: 6)
             }
+            .frame(height: 30)
+            .contentShape(Rectangle())
             .gesture(
                 DragGesture(minimumDistance: 0)
                     .onChanged { value in
+                        isSeeking = true
+                        seekFraction = max(0, min(1, value.location.x / geo.size.width))
+                    }
+                    .onEnded { value in
                         let fraction = max(0, min(1, value.location.x / geo.size.width))
                         let seekTime = Double(fraction) * audioEngine.duration
                         audioEngine.seek(to: seekTime)
+                        isSeeking = false
                     }
             )
         }
-        .frame(height: 6)
+        .frame(height: 30)
     }
 
     private func progressWidth(in totalWidth: CGFloat) -> CGFloat {
         guard audioEngine.duration > 0 else { return 0 }
-        let fraction = audioEngine.currentTime / audioEngine.duration
+        let fraction = isSeeking ? seekFraction : audioEngine.currentTime / audioEngine.duration
         return CGFloat(fraction) * totalWidth
     }
 

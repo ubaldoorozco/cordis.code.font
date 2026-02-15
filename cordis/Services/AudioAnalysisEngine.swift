@@ -5,21 +5,16 @@
 
 import Foundation
 import AVFoundation
-import Accelerate
 import Observation
 
 @Observable
-final class AudioAnalysisEngine {
+final class AudioAnalysisEngine: NSObject, AVAudioPlayerDelegate {
     var amplitude: Float = 0.0
     var isPlaying = false
     var currentTime: TimeInterval = 0
     var duration: TimeInterval = 0
 
-    private var audioEngine = AVAudioEngine()
-    private var playerNode = AVAudioPlayerNode()
-    private var audioFile: AVAudioFile?
-    private var seekOffset: TimeInterval = 0
-    private var fileSampleRate: Double = 44100
+    private var player: AVAudioPlayer?
     private var timeUpdateTimer: Timer?
 
     private let smoothingFactor: Float = 0.3
@@ -29,29 +24,14 @@ final class AudioAnalysisEngine {
         configureAudioSession()
 
         do {
-            audioFile = try AVAudioFile(forReading: url)
-            guard let file = audioFile else { return }
+            let newPlayer = try AVAudioPlayer(contentsOf: url)
+            newPlayer.isMeteringEnabled = true
+            newPlayer.delegate = self
+            newPlayer.prepareToPlay()
 
-            duration = Double(file.length) / file.processingFormat.sampleRate
-            fileSampleRate = file.processingFormat.sampleRate
-            seekOffset = 0
-
-            audioEngine = AVAudioEngine()
-            playerNode = AVAudioPlayerNode()
-
-            audioEngine.attach(playerNode)
-            audioEngine.connect(playerNode, to: audioEngine.mainMixerNode, format: file.processingFormat)
-
-            installAmplitudeTap()
-
-            try audioEngine.start()
-
-            playerNode.scheduleFile(file, at: nil) { [weak self] in
-                DispatchQueue.main.async {
-                    self?.handlePlaybackComplete()
-                }
-            }
-            playerNode.play()
+            duration = newPlayer.duration
+            player = newPlayer
+            newPlayer.play()
             isPlaying = true
             startTimeUpdates()
         } catch {
@@ -60,54 +40,42 @@ final class AudioAnalysisEngine {
     }
 
     func pause() {
-        playerNode.pause()
+        player?.pause()
         isPlaying = false
         stopTimeUpdates()
     }
 
     func resume() {
-        playerNode.play()
+        player?.play()
         isPlaying = true
         startTimeUpdates()
     }
 
     func stop() {
         stopTimeUpdates()
-        audioEngine.mainMixerNode.removeTap(onBus: 0)
-        playerNode.stop()
-        audioEngine.stop()
+        player?.stop()
+        player = nil
         isPlaying = false
         amplitude = 0
         currentTime = 0
     }
 
     func seek(to time: TimeInterval) {
-        guard let file = audioFile else { return }
+        guard let player else { return }
+        let clamped = max(0, min(time, duration))
+        player.currentTime = clamped
+        currentTime = clamped
+    }
 
-        let wasPlaying = isPlaying
-        playerNode.stop()
+    // MARK: - AVAudioPlayerDelegate
 
-        let sampleRate = file.processingFormat.sampleRate
-        let startFrame = AVAudioFramePosition(time * sampleRate)
-        let totalFrames = file.length
-        guard startFrame < totalFrames else { return }
-
-        let remainingFrames = AVAudioFrameCount(totalFrames - startFrame)
-
-        seekOffset = time
-        playerNode.scheduleSegment(file, startingFrame: startFrame, frameCount: remainingFrames, at: nil) { [weak self] in
-            DispatchQueue.main.async {
-                self?.handlePlaybackComplete()
-            }
-        }
-
-        currentTime = time
-
-        if wasPlaying {
-            playerNode.play()
-            isPlaying = true
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        DispatchQueue.main.async {
+            self.handlePlaybackComplete()
         }
     }
+
+    // MARK: - Audio Session
 
     private func configureAudioSession() {
         #if os(iOS)
@@ -150,27 +118,7 @@ final class AudioAnalysisEngine {
         #endif
     }
 
-    private func installAmplitudeTap() {
-        let mixerNode = audioEngine.mainMixerNode
-        let format = mixerNode.outputFormat(forBus: 0)
-
-        mixerNode.installTap(onBus: 0, bufferSize: 1024, format: format) { [weak self] buffer, _ in
-            guard let self, let channelData = buffer.floatChannelData else { return }
-
-            let frameLength = Int(buffer.frameLength)
-            var rms: Float = 0
-
-            vDSP_measqv(channelData[0], 1, &rms, vDSP_Length(frameLength))
-            rms = sqrtf(rms)
-
-            let clamped = min(max(rms, 0.0), 1.0)
-
-            DispatchQueue.main.async { [weak self] in
-                guard let self else { return }
-                self.amplitude = self.smoothingFactor * self.amplitude + (1.0 - self.smoothingFactor) * clamped
-            }
-        }
-    }
+    // MARK: - Time Updates
 
     private func startTimeUpdates() {
         stopTimeUpdates()
@@ -185,18 +133,15 @@ final class AudioAnalysisEngine {
     }
 
     private func updateCurrentTime() {
-        guard isPlaying,
-              let nodeTime = playerNode.lastRenderTime,
-              let playerTime = playerNode.playerTime(forNodeTime: nodeTime) else { return }
+        guard isPlaying, let player else { return }
 
-        let sampleTime = Double(playerTime.sampleTime)
-        let sampleRate = playerTime.sampleRate
+        currentTime = player.currentTime
 
-        let playedTime = sampleTime / sampleRate
-        let totalTime = seekOffset + playedTime
-        if totalTime >= 0 {
-            currentTime = min(totalTime, duration)
-        }
+        player.updateMeters()
+        let dB = player.averagePower(forChannel: 0)
+        let linear = pow(10.0, dB / 20.0)
+        let clamped = min(max(linear, 0.0), 1.0)
+        amplitude = smoothingFactor * amplitude + (1.0 - smoothingFactor) * clamped
     }
 
     private func handlePlaybackComplete() {
@@ -208,8 +153,7 @@ final class AudioAnalysisEngine {
 
     deinit {
         timeUpdateTimer?.invalidate()
-        audioEngine.mainMixerNode.removeTap(onBus: 0)
-        audioEngine.stop()
+        player?.stop()
         NotificationCenter.default.removeObserver(self)
     }
 }

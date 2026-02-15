@@ -4739,6 +4739,38 @@
         }
       }
     },
+    "screenshot_chat_assistant %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hi %1$@! Based on your recent records, your heart rate has been stable. To reduce stress, I recommend practicing the 4-7-8 breathing exercise you'll find in the meditation section."
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¡Hola %1$@! Basándome en tus registros recientes, tu frecuencia cardíaca ha sido estable. Para reducir el estrés, te recomiendo practicar la respiración 4-7-8 que encontrarás en la sección de meditación."
+          }
+        }
+      }
+    },
+    "screenshot_chat_user" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "How can I reduce my stress?"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Cómo puedo reducir mi estrés?"
+          }
+        }
+      }
+    },
     "settings_about" : {
       "localizations" : {
         "en" : {

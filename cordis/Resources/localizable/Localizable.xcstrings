@@ -4,6 +4,9 @@
     "" : {
 
     },
+    " BPM" : {
+
+    },
     "-%@" : {
 
     },
@@ -2799,6 +2802,7 @@
       }
     },
     "home_meditate" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -5506,6 +5510,102 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Muy bajo"
+          }
+        }
+      }
+    },
+    "suggestion_assistant" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wellness assistant"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Asistente de bienestar"
+          }
+        }
+      }
+    },
+    "suggestion_breathing" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4-7-8 Breathing exercise"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ejercicio de respiración 4-7-8"
+          }
+        }
+      }
+    },
+    "suggestion_dismiss" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I'm fine, thanks"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estoy bien, gracias"
+          }
+        }
+      }
+    },
+    "suggestion_guided_meditation" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guided meditation"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meditación guiada"
+          }
+        }
+      }
+    },
+    "suggestion_message" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your heart is beating a little fast. What would you like to do?"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tu corazón late un poco rápido. ¿Qué te gustaría hacer?"
+          }
+        }
+      }
+    },
+    "suggestion_tap_options" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap for options"
+          }
+        },
+        "es-419" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toca para ver opciones"
           }
         }
       }

@@ -26,6 +26,15 @@ struct HomeView: View {
     @State private var showInputError = false
     @State private var inputShakeOffset: CGFloat = 0
     @State private var showHealthKitSaveConfirmation = false
+    @State private var showingSuggestionSheet = false
+    @State private var showingHealthAssistant = false
+    @State private var suggestionBPM: Int = 0
+    @State private var lastSuggestionSheetTime: Date? = nil
+    @State private var pendingAction: SuggestionAction? = nil
+
+    private enum SuggestionAction {
+        case guidedMeditation, breathingExercise, healthAssistant
+    }
 
     @FocusState private var bpmFocused: Bool
 
@@ -108,6 +117,17 @@ struct HomeView: View {
                 ManualMeasurementView { bpm in
                     saveEntry(bpm: bpm)
                 }
+            }
+            .sheet(isPresented: $showingSuggestionSheet, onDismiss: handlePendingAction) {
+                ElevatedBPMSuggestionSheet(
+                    bpm: suggestionBPM,
+                    onGuidedMeditation: { pendingAction = .guidedMeditation },
+                    onBreathingExercise: { pendingAction = .breathingExercise },
+                    onHealthAssistant: { pendingAction = .healthAssistant }
+                )
+            }
+            .sheet(isPresented: $showingHealthAssistant) {
+                HealthAssistantView()
             }
             .onChange(of: healthKit.latestHeartRate) { oldValue, newValue in
                 // Auto-save HealthKit reading when it changes (but not on initial load)
@@ -337,22 +357,52 @@ struct HomeView: View {
     // MARK: - Emergency Meditation Button
 
     private var emergencyMeditationButton: some View {
-        GlassCardDanger {
-            VStack(spacing: 12) {
-                Image(systemName: "brain.head.profile")
-                    .font(.system(size: 40))
-                    .foregroundStyle(.red)
+        Button {
+            suggestionBPM = ultimoBPM
+            showingSuggestionSheet = true
+        } label: {
+            GlassCardDanger {
+                HStack(spacing: 12) {
+                    Image(systemName: "heart.fill")
+                        .font(.title2)
+                        .foregroundStyle(.red)
+                        .symbolEffect(.pulse)
 
-                Text(String(localized: "home_breathe"))
-                    .font(.headline)
+                    Text(String(localized: "home_breathe"))
+                        .font(.headline)
+                        .foregroundStyle(.primary)
 
-                GlassButton(String(localized: "home_meditate"), icon: "sparkles", style: .danger) {
-                    showingMeditation = true
+                    Spacer()
+
+                    Text(String(localized: "suggestion_tap_options"))
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+
+                    Image(systemName: "chevron.right")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
                 }
             }
-            .frame(maxWidth: .infinity)
         }
+        .buttonStyle(.plain)
         .padding(.horizontal)
+    }
+
+    // MARK: - Pending Action Handler
+
+    private func handlePendingAction() {
+        guard let action = pendingAction else { return }
+        pendingAction = nil
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            switch action {
+            case .guidedMeditation:
+                selectedTab = 3
+            case .breathingExercise:
+                showingMeditation = true
+            case .healthAssistant:
+                showingHealthAssistant = true
+            }
+        }
     }
 
     // MARK: - Quick Actions
@@ -420,6 +470,18 @@ struct HomeView: View {
         if bpm > t.max {
             explosion = true
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) { explosion = false }
+
+            // Show suggestion sheet with 60s throttle
+            let now = Date()
+            let canShow = lastSuggestionSheetTime == nil ||
+                now.timeIntervalSince(lastSuggestionSheetTime!) >= 60
+            if canShow && !showingMeditation && !showingManualMeasurement {
+                suggestionBPM = bpm
+                lastSuggestionSheetTime = now
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    showingSuggestionSheet = true
+                }
+            }
         }
     }
 

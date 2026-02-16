@@ -6,7 +6,5 @@
 	<array>
 		<string>audio</string>
 	</array>
-	<key>NSHealthShareUsageDescription</key>
-	<string>CORDIS reads your heart rate data from Apple Health to display your latest BPM and track trends over time.</string>
 </dict>
 </plist>
